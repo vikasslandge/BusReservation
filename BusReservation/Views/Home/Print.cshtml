@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Print";
+}
+
+<div class="container" style="padding:0;height:350px">
+    <br />
+    <br />
+    <h1 class="text-center">PRINT TICKET</h1><br>
+    <h4 style="text-align:center;margin-top:0;margin-bottom:50px">Verify your details, and <span style="color:red">Print</span> your tickets </h4>
+    <form action="" id="printTicketForm" method="get">
+        <div id="ticketInput">
+            <div class="tinInput">
+                <div class="tinheader">Ticket Number</div>
+                <div class="fl search-box">
+                    <div>
+                        <input autocomplete="off" id="ticketNo" class="db" name="ticketNo" data-validate="required" data-message="Please enter a valid ticket number." placeholder="Enter your ticket number" type="text">
+                        <div class="error-message-fixed"> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="emailInput">
+                <div class="emailheader">E-mail</div>
+                <div class="fl search-box">
+                    <div>
+                        <input autocomplete="off" id="emailId" class="db" name="emailId" data-validate="email" data-message="Please enter a valid emailId." placeholder="Enter your e-mail used for booking" type="text">
+                        <div class="error-message-fixed"> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ticketSubmit">
+                <input value="Search" class="search_btn" id="ticketSearch" type="submit">
+            </div>
+        </div>
+    </form>
+    <br />
+    <br />
+</div>
+
+

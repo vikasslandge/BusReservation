@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<!------------------Search bus code---------------->
+<div class="container-fluid" style="padding:0">
+    <div class="mainbg" style="opacity:0.7"></div>
+    <h1 class="text-center infohead">BOOK A BUS</h1><br>
+    <div class="row infodata">
+        <div class="col-md-3">
+            <select class="form-control ">
+                <option value="default">Source city</option>
+
+                <option value="Pune">Pune</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-control ">
+                <option value="default">Destination city</option><!-- /.option-->
+
+                <option value="Pune">Banglore</option>
+                <option value="Mumbai">Hydrabad</option>
+                <option value="Delhi">Chennai</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <input type="date" name="departureDate" class="form-control" data-toggle="datepicker" placeholder="01-01-2019">
+        </div>
+        <div class="col-md-3">
+            <input type="button" class="btn-danger btn" value="Search bus">
+        </div>
+    </div>
+</div>
+
+<!---------------------information about company-------------------------->
+
+<div style="margin:30px 180px;width:1000px;height:350px;border:1px solid black">
+
+    <div class="header">
+        <div class="img2_Hero col-sm-1"></div>
+        <div class="title">Leave on time, repect your time</div>
+        <br />
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="info_hero">
+        <div class="titl_hero"> Family Travel </div>
+        <div class="value_hero">Facilis ipsum reprehenderit. </div>
+        <div class="text_hero">Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. </div>
+    </div>
+    <div class="info_hero2">
+        <div class="titl_hero"> Business Travel </div>
+        <div class="value_hero">Facilis ipsum reprehenderit. </div>
+        <div class="text_hero">Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</div>
+    </div>
+    <div class="info_hero2">
+        <div class="titl_hero"> Booking Flexibility </div>
+        <div class="value_hero">Facilis ipsum reprehenderit.</div>
+        <div class="text_hero">Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</div>
+    </div>
+</div>
+
+<!---------------------------------------Offer Period------------------------->
+
+<section class="discount-offer" id="offers">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="dicount-offer-content text-center">
+                    <h2>Join with us within 10 May, 2019 and get upto 20% Discount</h2>
+                    <div class="campaign-timer">
+                        <div id="timer">
+                            <div class="time time-after" id="days"><span class="camp">Days</span></div>
+                            <div class="time time-after" id="hours"><span class="camp">Hour</span></div>
+                            <div class="time time-after" id="minutes"><span class="camp">Minute</span></div>
+                            <div class="time" id="seconds"><span class="camp">Second</span></div>
+                        </div>
+                    </div>
+                    <div class="about-btn">
+                        <button class="about-view btn-danger form-control discount-offer-btn">
+                            Register now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

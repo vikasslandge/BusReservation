@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Cancel";
+}
+<div class="container" style="padding:0;height:350px">
+    <br />
+    <br />
+    <h1 class="text-center">CANCELLATION</h1><br>
+    <h4 style="text-align:center;margin-top:0;margin-bottom:50PX">Verify your details, and <span style="color:red">Cancel</span> your tickets </h4>
+    <form action="" id="cancelForm" method="get">
+        <div id="ticketInput">
+            <div class="tinInput col-md-4">
+                <div class="tinheader">Ticket Number</div>
+                <div class="fl search-box">
+                    <div>
+                        <input autocomplete="off" id="ticketNo" class="db" name="ticketNo" data-validate="required" data-message="Please enter a valid ticket number." placeholder="Enter your ticket number" type="text">
+                        <div class="error-message-fixed"> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="emailInput col-md-4">
+                <div class="emailheader">E-mail</div>
+                <div class="fl search-box">
+                    <div>
+                        <input autocomplete="off" id="emailId" class="db" name="emailId" data-validate="email" data-message="Please enter a valid emailId." placeholder="Enter your e-mail used for booking" type="text">
+                        <div class="error-message-fixed"> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ticketSubmit col-md-3">
+                <input value="Search" class="search_btn" id="ticketSearch" type="submit">
+            </div>
+        </div>
+    </form>
+    <br />
+    <br />
+</div>
+

@@ -1,0 +1,239 @@
+﻿@model BusReservation.Models.UserDetails
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link href="~/MyFiles/CSS/CommonLayout.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <title>Online Bus Reservation</title>
+</head>
+
+<body>
+    <!---------------------Navigation bar code---------------------->
+    <nav class="navbar height navbar-expand-lg navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand brandNav" href="@Url.Action("Index","Home")">
+                    <img src="~/MyFiles/Images/buslogo.jpg" alt="buslogo" style="width:40px;">
+                </a>
+                <button type="button" class="navbar-toggle alert-dark" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav ">
+                    <li><a href="#busTicket">Bus Tickets</a></li>
+                    <li><a href="#busHire">Bus Hire</a></li>
+                    <li><a href="#offers">Special Offers</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#menu" data-toggle="dropdown" class="dropdown-toggle">Manage Booking<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Cancel", "Cancel", "Home")</li>
+                            <li>@Html.ActionLink("Reschedule", "Reschedule", "Home")</li>
+                            <li>@Html.ActionLink("Print", "Print", "Home")</li>
+                            <li>@Html.ActionLink("Feedback", "Feedback", "Home")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#user" data-toggle="dropdown" class="dropdown-toggle glyphicon glyphicon-user"><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            @if (Session["UserId"] == null)
+                            {
+                                <li><a href="#" data-toggle="modal" data-target="#loginModal">Sign Up/Sign In</a></li>
+                            }
+                            else
+                            {
+                                if (Convert.ToInt32(Session["UserId"]) == 1)
+                                {
+                                    <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                                }
+                                else
+                                {
+                                    <li>@Html.ActionLink("Profile", "UserProfile", "Home")</li>
+                                    <li>@Html.ActionLink("My Trips", "MyTrips", "Home")</li>
+                                    <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-------------------Login Modal content------------------->
+    <div class="modal fade" id="loginModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4><span class="glyphicon glyphicon-pencil"></span>Login</h4>
+                </div>
+
+                <div class="modal-body">
+
+                    @using (Html.BeginForm("Authorize", "Home", FormMethod.Post))
+                    {
+
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label for="mobileNumber"><span class="glyphicon glyphicon-user"></span>Mobile Number<span style="color:red">*</span></label>
+                            @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="password"><span class="glyphicon glyphicon-lock"></span>Password<span style="color:red">*</span></label>
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+
+                        <button type="submit" id="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            Login
+                        </button>
+                        <button type="reset" id="cancel" class="btn btn-danger btn-default" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            Cancel
+                        </button>
+                    }
+                </div>
+
+                <div class="modal-footer">
+                    <p>New user<a href="#" data-toggle="modal" data-target="#register"> register here.</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!--------------------------------Register Modal content----------------->
+    <div class="modal fade" id="register" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4><span class="glyphicon glyphicon-pencil"></span>Register</h4>
+                </div>
+
+                <div class="modal-body">
+                    @using (Html.BeginForm("Register", "Home", FormMethod.Post, htmlAttributes: new { id = "SignUpform" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <label for="name"><span class="glyphicon glyphicon-user"></span>Name<span style="color:red">*</span></label>
+                            @Html.EditorFor(modal => modal.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><span class="glyphicon glyphicon-envelope"></span>Email<span style="color:red">*</span></label>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="password"><span class="glyphicon glyphicon-lock"></span>Password<span style="color:red">*</span></label>
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", @Type = "Password" })
+                        </div>
+                        <div class="form-group">
+                            <label for="number"><span class="glyphicon glyphicon-phone"></span>Mobile Number<span style="color:red">*</span></label>
+                            @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger", @Type = "Number" })
+                        </div>
+                        <div class="form-group">
+                            <label for="radio"><span class="fa fa-mars"></span>Gender<span style="color:red">*</span></label>
+                            <br />
+                            <input type="radio" name="gender" id="male" value="Male"> Male
+                            <input type="radio" class="float-left" id="female" name="gender" value="Female"> Female<br>
+                        </div>
+                        <div class="form-group">
+                            <label for="date"><span class="fa fa-child"></span>Date of Birth<span style="color:red">*</span></label>
+                            @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "Date form-control", @Type = "Date" } })
+                            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label for="address"><span class="fa fa-address-book"></span>Address<span style="color:red">*</span></label>
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+
+                        <button type="submit" id="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            Register
+                        </button>
+                        <button type="reset" id="cancel" class="btn btn-danger btn-default" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            Cancel
+                        </button>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        @RenderBody()
+
+        <!---------------------------Footer code----------------------------->
+        <footer>
+            <div class="row" style="height200px;background-color:#333;color:white">
+                <div class="col-md-4" style="padding-left:70px;padding-top:20px;">
+
+                    <h4 style="color:#d9534f">About Us</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore eos molestias quod sint
+                        ipsum possimus temporibus officia iste perspiciatis consectetur in fugiat repudiandae cum.
+                        Totam cupiditate nostrum ut neque ab?
+                    </p>
+                </div>
+                <div class="col-md-4" style="padding:20px 100px">
+                    <h4 style="color:#d9534f">Contact Us</h4>
+                    <p>
+                        <address>
+                            <span class="glyphicon glyphicon-map-marker"></span>
+                            One Microsoft Way<br />
+                            Redmond, WA 98052-6399<br />
+                        </address>
+                    </p>
+                    <p><span class="glyphicon glyphicon-phone"></span>Phone: +00 1515151515</p>
+                    <p><span class="glyphicon glyphicon-envelope"></span>Email: mail@mail.com</p>
+                </div>
+                <div class="col-md-4" style="padding-top:20px;padding-left:60px">
+                    <h4 style="padding-left:15px;color:#d9534f">Follow Us</h4><br>
+                    <div style="display: inline-block">
+                        <a href="http://google.com" style="padding:10px"><img src="~/MyFiles/Images/google.png" width="38px" height="38px" style="border-radius: 50%"></a>
+                        <a href="http://facebook.com" style="padding:10px"><img src="~/MyFiles/Images/fb.jpge.png" width="35px" height="35px" style="border-radius: 50%"></a>
+                        <a href="http://twitter.com" style="padding:10px"><img src="~/MyFiles/Images/twitter.png" width="35px" height="35px" style="border-radius: 50%"></a>
+                    </div>
+
+                </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿@model BusReservation.Models.UserDetails
+
+<style>
+    .user {
+        height: 370px;
+        background-color: whitesmoke;
+        margin: 30px 70px;
+        z-index: -1;
+        width: 1000px;
+        border-radius: 5px;
+    }
+
+    .heading {
+        font-size: 16px;
+        color: #333;
+        padding-top: 30px;
+        margin-left:70px;
+        margin-top:50px;
+    }
+
+    .userdata {
+        font-size: 19px;
+        margin-left:100px;
+        text-transform:uppercase;
+        color:midnightblue;
+    }
+</style>
+@{
+    ViewBag.Title = "UserProfile";
+}
+<br />
+<br />
+<h2 class="text-center text-capitalize">My Profile</h2>
+
+<div class="container">
+    <div></div>
+    <div style="" class="user">
+
+        <div class="row">
+            <div class="col-md-4">
+                <p class="heading"><span class="glyphicon glyphicon-user"></span>Name</p>
+                <b class="userdata"> @Html.DisplayFor(model => model.Name)</b>
+            </div>
+            <div class="col-md-4">
+                <p class="heading"><span class="fa fa-child"></span>Date of Birth</p>
+                <b class="userdata"> @Html.DisplayFor(model => model.DateOfBirth.Date)</b>
+            </div>
+            <div class="col-md-4">
+                <p class="heading"><span class="fa fa-mars"></span>Gender</p>
+                <b class="userdata">  @Html.DisplayFor(model => model.Gender)</b>
+            </div>
+        </div>
+        @*<hr />
+        <h3 class="text-center" style="">Contact Details</h3>*@
+        <div class="row">
+            <div class="col-md-4">
+                <p class="heading"><span class="glyphicon glyphicon-envelope"></span>Email</p>
+                <b class="userdata"> @Html.DisplayFor(model => model.Email)</b>
+            </div>
+            <div class="col-md-4">
+                <p class="heading"><span class="glyphicon glyphicon-phone"></span>Mobile Number</p>
+                <b class="userdata"> +91 @Html.DisplayFor(model => model.MobileNumber)</b>
+            </div>
+            <div class="col-md-4">
+                <p class="heading"><span class="fa fa-address-book"></span>Address</p>
+                <b class="userdata"> @Html.DisplayFor(model => model.Address, new { htmlAttributes = new { @class = "userdata" } })</b>
+            </div>
+
+        </div>
+    </div>
+</div>
+
