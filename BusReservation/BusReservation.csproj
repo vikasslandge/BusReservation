@@ -141,23 +141,32 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BusModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BusModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BusModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OfferDetails.cs">
+      <DependentUpon>BusModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProviderDetails.cs">
+      <DependentUpon>BusModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserDetails.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
+      <DependentUpon>BusModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UserModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UserModel.edmx</DependentUpon>
+    <Compile Include="Models\UserTickets.cs">
+      <DependentUpon>BusModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -170,15 +179,15 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Models\UserModel.Context.tt">
+    <Content Include="Models\BusModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>UserModel.Context.cs</LastGenOutput>
-      <DependentUpon>UserModel.edmx</DependentUpon>
+      <DependentUpon>BusModel.edmx</DependentUpon>
+      <LastGenOutput>BusModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\UserModel.tt">
+    <Content Include="Models\BusModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>UserModel.edmx</DependentUpon>
-      <LastGenOutput>UserModel.cs</LastGenOutput>
+      <DependentUpon>BusModel.edmx</DependentUpon>
+      <LastGenOutput>BusModel.cs</LastGenOutput>
     </Content>
     <Content Include="MyFiles\Images\banner.jpg" />
     <Content Include="MyFiles\Images\buslogo.jpg" />
@@ -197,12 +206,12 @@
     <Content Include="MyFiles\CSS\bootstrap-reboot.min.css.map" />
     <Content Include="MyFiles\CSS\bootstrap.css.map" />
     <Content Include="MyFiles\CSS\bootstrap.min.css.map" />
-    <EntityDeploy Include="Models\UserModel.edmx">
+    <EntityDeploy Include="Models\BusModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>UserModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>BusModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\UserModel.edmx.diagram">
-      <DependentUpon>UserModel.edmx</DependentUpon>
+    <Content Include="Models\BusModel.edmx.diagram">
+      <DependentUpon>BusModel.edmx</DependentUpon>
     </Content>
     <None Include="MyFiles\JavaScript\jquery-1.10.2-vsdoc.js" />
     <Content Include="MyFiles\Images\fb.jpge.png" />
@@ -253,6 +262,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -294,6 +305,12 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Home\MyTrips.cshtml" />
     <Content Include="Views\Home\UserProfile.cshtml" />
+    <Content Include="Views\Shared\_AddProvider.cshtml" />
+    <Content Include="Views\Shared\_ProviderDetails.cshtml" />
+    <Content Include="Views\Shared\_Edit.cshtml" />
+    <Content Include="Views\Shared\_AddOffer.cshtml" />
+    <Content Include="Views\Shared\_OfferDetails.cshtml" />
+    <Content Include="Views\Shared\_EditOffer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

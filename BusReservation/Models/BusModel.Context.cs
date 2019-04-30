@@ -13,10 +13,10 @@ namespace BusReservation.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BusReservationEntities : DbContext
+    public partial class BusBookingSystemEntities : DbContext
     {
-        public BusReservationEntities()
-            : base("name=BusReservationEntities")
+        public BusBookingSystemEntities()
+            : base("name=BusBookingSystemEntities")
         {
         }
     
@@ -25,6 +25,9 @@ namespace BusReservation.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<OfferDetails> OfferDetails { get; set; }
+        public virtual DbSet<ProviderDetails> ProviderDetails { get; set; }
         public virtual DbSet<UserDetails> UserDetails { get; set; }
+        public virtual DbSet<UserTickets> UserTickets { get; set; }
     }
 }

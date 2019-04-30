@@ -8,32 +8,34 @@
 <div class="container-fluid" style="padding:0">
     <div class="mainbg" style="opacity:0.7"></div>
     <h1 class="text-center infohead">BOOK A BUS</h1><br>
-    <div class="row infodata">
-        <div class="col-md-3">
-            <select class="form-control ">
-                <option value="default">Source city</option>
+    <form>
+        <div class="row infodata">
+            <div class="col-md-3">
+                <select class="form-control " id="source">
+                    <option value="default">Source city</option>
 
-                <option value="Pune">Pune</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Delhi">Delhi</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <select class="form-control ">
-                <option value="default">Destination city</option><!-- /.option-->
+                    <option value="Pune">Pune</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Delhi">Delhi</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-control " id="destination">
+                    <option value="default">Destination city</option><!-- /.option-->
 
-                <option value="Pune">Banglore</option>
-                <option value="Mumbai">Hydrabad</option>
-                <option value="Delhi">Chennai</option>
-            </select>
+                    <option value="Pune">Banglore</option>
+                    <option value="Mumbai">Hydrabad</option>
+                    <option value="Delhi">Chennai</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input type="date" name="departureDate" class="form-control" data-toggle="datepicker" placeholder="01-01-2019">
+            </div>
+            <div class="col-md-3">
+                <input type="button" class="btn-danger btn" value="Search bus">
+            </div>
         </div>
-        <div class="col-md-3">
-            <input type="date" name="departureDate" class="form-control" data-toggle="datepicker" placeholder="01-01-2019">
-        </div>
-        <div class="col-md-3">
-            <input type="button" class="btn-danger btn" value="Search bus">
-        </div>
-    </div>
+    </form>
 </div>
 
 <!---------------------information about company-------------------------->

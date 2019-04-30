@@ -9,7 +9,7 @@ namespace BusReservation.Controllers
 {
     public class HomeController : Controller
     {
-        BusReservationEntities entities = new BusReservationEntities();
+        BusBookingSystemEntities entities = new BusBookingSystemEntities();
         public ActionResult Index()
         {
             return View();
@@ -26,7 +26,7 @@ namespace BusReservation.Controllers
             detail.Gender = collection["Gender"];
             detail.Email = collection["email"];
             detail.Address = collection["address"];
-            detail.DateOfBirth = Convert.ToDateTime(collection["dob"]).Date;
+            detail.DateOfBirth = Convert.ToDateTime(collection["DateOfBirth"]);
             detail.UserType = "User";
  
             entities.UserDetails.Add(detail);
@@ -38,7 +38,7 @@ namespace BusReservation.Controllers
         [HttpPost]
         public ActionResult Authorize(UserDetails login)
         {
-            using (BusReservationEntities entities = new BusReservationEntities())
+            using (BusBookingSystemEntities entities = new BusBookingSystemEntities())
             {
                 var userDetails = entities.UserDetails.Where(user => user.MobileNumber == login.MobileNumber && user.Password == login.Password).FirstOrDefault();
                 int loginid = entities.UserDetails.Where(s => s.MobileNumber == userDetails.MobileNumber).Select(s1 => s1.UserId).FirstOrDefault();
@@ -65,9 +65,7 @@ namespace BusReservation.Controllers
                     {
                         return RedirectToAction("Index", "Home");
                     }
-
                 }
-
             }
         }
         public ActionResult Logout()
@@ -101,6 +99,7 @@ namespace BusReservation.Controllers
         }
         public ActionResult MyTrips()
         {
+            int id = Convert.ToInt32(Session["UserId"]);
             return View();
         }
 

@@ -1,0 +1,42 @@
+﻿<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+@model IEnumerable<BusReservation.Models.ProviderDetails>
+
+<div id="edit"></div>
+<table class="table">
+    <tr>
+        <th>
+            <span class=" glyphicon glyphicon-flag"></span>Organization Name
+        </th>
+        <th>
+            <span class="glyphicon glyphicon-phone"></span>Mobile Number
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganisationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact)
+            </td>
+            <td>
+                @Ajax.ActionLink("Edit", "Edit", new { id = item.ProviderId },new AjaxOptions {
+               HttpMethod = "GET",
+               InsertionMode = InsertionMode.Replace,
+               UpdateTargetId = "edit"
+           })
+                |
+                @Html.ActionLink("Delete", "ProviderDelete", new { id = item.ProviderId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+

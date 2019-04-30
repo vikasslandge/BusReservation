@@ -12,26 +12,21 @@ namespace BusReservation.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserDetails
+    public partial class OfferDetails
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserDetails()
+        public OfferDetails()
         {
-            this.OfferDetails = new HashSet<OfferDetails>();
+            this.UserDetails = new HashSet<UserDetails>();
         }
     
-        public int UserId { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string MobileNumber { get; set; }
-        public string Gender { get; set; }
-        public System.DateTime DateOfBirth { get; set; }
-        public string Address { get; set; }
-        public string UserType { get; set; }
+        public int OfferId { get; set; }
+        public string OfferCode { get; set; }
+        public int DiscountPercentage { get; set; }
+        public int MinAmount { get; set; }
+        public System.DateTime ExpiryDate { get; set; }
     
-        public virtual UserTickets UserTickets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OfferDetails> OfferDetails { get; set; }
+        public virtual ICollection<UserDetails> UserDetails { get; set; }
     }
 }
