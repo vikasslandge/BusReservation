@@ -1,0 +1,266 @@
+﻿<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+@{
+    ViewBag.Title = "SelectSeat";
+}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .seat {
+        float: left;
+        display: block;
+        margin: 5px;
+        background-image: url('../../MyFiles/Images/seatUnbook.png');
+        width: 45px;
+        height: 45px;
+        text-align: center;
+        background-size: cover;
+    }
+
+        .seat:hover {
+        }
+
+    .seat-select {
+        display: none;
+    }
+
+        .seat-select:checked + .seat {
+            background-image: url('../../MyFiles/Images/book.png');
+        }
+
+    #steering {
+        height: 50px;
+        width: 50px;
+        margin-left: 130px;
+    }
+
+    #door {
+        height: 60px;
+        width: 60px;
+        margin-left: 1px;
+    }
+</style>
+
+<div class="jumbotron">
+    <h3 class="text-center">Please Book your Seat...</h3>
+    <br />
+
+    <div align="center" class="seatStructure">
+        <form id="reservation" method="post" action="">
+            <div style="background-color:white;width:280px">
+                <div>
+                    <img src="~/MyFiles/Images/door.jpg" id="door" />
+                    <img src="~/MyFiles/Images/steering.png" id="steering" />
+                </div>
+                <div>
+                    <table id="seatsBlock">
+                        <tr>
+                            <td>
+                                <input id="seat-1" class="seat-select" type="checkbox" value="1" name="seat[]" />
+                                <label for="seat-1" class="seat"></label>
+                            </td>
+
+                            <td>
+                                <input id="seat-2" class="seat-select" type="checkbox" value="2" name="seat[]" />
+                                <label for="seat-2" class="seat"></label>
+                            </td>
+                            <td></td>
+                            <td>
+                                <input id="seat-3" class="seat-select" type="checkbox" value="3" name="seat[]" />
+                                <label for="seat-3" class="seat"></label>
+                            </td>
+
+
+                            <td>
+                                <input id="seat-4" class="seat-select" type="checkbox" value="4" name="seat[]" />
+                                <label for="seat-4" class="seat"></label>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input id="seat-5" class="seat-select" type="checkbox" value="5" name="seat[]" />
+                                <label for="seat-5" class="seat"></label>
+                            </td>
+
+                            <td>
+                                <input id="seat-6" class="seat-select" type="checkbox" value="6" name="seat[]" />
+                                <label for="seat-6" class="seat"></label>
+                            </td>
+
+                            <td> </td>
+
+                            <td>
+                                <input id="seat-7" class="seat-select" type="checkbox" value="7" name="seat[]" />
+                                <label for="seat-7" class="seat"></label>
+                            </td>
+
+                            <td>
+                                <input id="seat-8" class="seat-select" type="checkbox" value="8" name="seat[]" />
+                                <label for="seat-8" class="seat"></label>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input id="seat-9" class="seat-select" type="checkbox" value="9" name="seat[]" />
+                                <label for="seat-9" class="seat"></label>
+                            </td>
+
+                            <td>
+                                <input id="seat-10" class="seat-select" type="checkbox" value="10" name="seat[]" />
+                                <label for="seat-10" class="seat"></label>
+                            </td>
+
+
+                            <td> </td>
+
+                            <td>
+                                <input id="seat-11" class="seat-select" type="checkbox" value="11" name="seat[]" />
+                                <label for="seat-11" class="seat"></label>
+                            </td>
+
+                            <td>
+                                <input id="seat-12" class="seat-select" type="checkbox" value="12" name="seat[]" />
+                                <label for="seat-12" class="seat"></label>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="seat-13" class="seat-select" type="checkbox" value="13" name="seat[]" />
+                                <label for="seat-13" class="seat"></label>
+                            </td>
+
+                            <td>
+                                <input id="seat-14" class="seat-select" type="checkbox" value="14" name="seat[]" />
+                                <label for="seat-14" class="seat"></label>
+                            </td>
+
+                            <td> &nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+                            <td>
+                                <input id="seat-15" class="seat-select" type="checkbox" value="15" name="seat[]" />
+                                <label for="seat-15" class="seat"></label>
+                            </td>
+
+                            <td>
+                                <input id="seat-16" class="seat-select" type="checkbox" value="16" name="seat[]" />
+                                <label for="seat-16" class="seat"></label>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input id="seat-17" class="seat-select" type="checkbox" value="17" name="seat[]" />
+                                <label for="seat-17" class="seat"></label>
+                            </td>
+
+                            <td>
+                                <input id="seat-18" class="seat-select" type="checkbox" value="18" name="seat[]" />
+                                <label for="seat-18" class="seat"></label>
+                            </td>
+
+                            <td> &nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+                            <td>
+                                <input id="seat-19" class="seat-select" type="checkbox" value="19" name="seat[]" />
+                                <label for="seat-19" class="seat"></label>
+                            </td>
+
+                            <td>
+                                <input id="seat-20" class="seat-select" type="checkbox" value="20" name="seat[]" />
+                                <label for="seat-20" class="seat"></label>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="seat-21" class="seat-select" type="checkbox" value="21" name="seat[]" />
+                                <label for="seat-21" class="seat"></label>
+                            </td>
+
+                            <td>
+                                <input id="seat-22" class="seat-select" type="checkbox" value="22" name="seat[]" />
+                                <label for="seat-22" class="seat"></label>
+                            </td>
+
+
+
+                            <td>
+                                <input id="seat-23" class="seat-select" type="checkbox" value="23" name="seat[]" />
+                                <label for="seat-23" class="seat"></label>
+                            </td>
+
+                            <td>
+                                <input id="seat-24" class="seat-select" type="checkbox" value="24" name="seat[]" />
+                                <label for="seat-24" class="seat"></label>
+                            </td>
+                            <td>
+                                <input id="seat-25" class="seat-select" type="checkbox" value="25" name="seat[]" />
+                                <label for="seat-25" class="seat"></label>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+                <br />
+            </div>
+            <button onclick="updateTextArea()" type="submit" value="Book Ticket" class="btn btn-danger" style="margin-top:20px">BOOK TICKET</button>
+        </form>
+
+    </div>
+
+</div>
+<script>
+    function updateTextArea() {
+
+        if ($("input:checked").length > 0 && $("input:checked").length < 4) {
+
+            var allNumberVals = [];
+            var allSeatsVals = [];
+
+            //counting checked check boxes for seat
+            var inputElems = document.getElementsByTagName("input"),
+                count = 0;
+            for (var i = 0; i < inputElems.length; i++) {
+                if (inputElems[i].type == "checkbox" && inputElems[i].checked == true) {
+                    count++;
+                }
+            }
+
+            //Storing in Array
+
+            allNumberVals.push(count);
+            $('#seatsBlock :checked').each(function () {
+                allSeatsVals.push($(this).val());
+            });
+            alert("count selected seats  " + allNumberVals)
+            alert("Seat number for all selected  " + allSeatsVals);
+
+
+        }
+        else {
+            alert("Please select atleast 1 seat and maximum 3 seats.");
+        }
+    }
+    $(":checkbox").click(function () {
+
+        if ($("input:checked").length == 3) {
+            $(":checkbox").prop('disabled', true);
+            $(':checked').prop('disabled', false);
+        }
+        else {
+            $(":checkbox").prop('disabled', false);
+        }
+    });
+
+
+</script>

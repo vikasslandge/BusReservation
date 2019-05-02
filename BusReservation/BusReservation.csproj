@@ -190,6 +190,7 @@
       <LastGenOutput>BusModel.cs</LastGenOutput>
     </Content>
     <Content Include="MyFiles\Images\banner.jpg" />
+    <Content Include="MyFiles\Images\book.png" />
     <Content Include="MyFiles\Images\buslogo.jpg" />
     <Content Include="MyFiles\Images\buslogo.png" />
     <Content Include="MyFiles\CSS\bootstrap-grid.css" />
@@ -214,11 +215,14 @@
       <DependentUpon>BusModel.edmx</DependentUpon>
     </Content>
     <None Include="MyFiles\JavaScript\jquery-1.10.2-vsdoc.js" />
+    <Content Include="MyFiles\Images\door.jpg" />
     <Content Include="MyFiles\Images\fb.jpge.png" />
     <Content Include="MyFiles\Images\google.png" />
     <Content Include="MyFiles\Images\insta.png" />
     <Content Include="MyFiles\Images\offer-timer.jpg" />
+    <Content Include="MyFiles\Images\seatUnbook.png" />
     <Content Include="MyFiles\Images\sheild.png" />
+    <Content Include="MyFiles\Images\steering.png" />
     <Content Include="MyFiles\Images\twitter.png" />
     <Content Include="MyFiles\JavaScript\jquery-1.10.2.js" />
     <Content Include="MyFiles\JavaScript\jquery-1.10.2.min.js" />
@@ -311,6 +315,8 @@
     <Content Include="Views\Shared\_AddOffer.cshtml" />
     <Content Include="Views\Shared\_OfferDetails.cshtml" />
     <Content Include="Views\Shared\_EditOffer.cshtml" />
+    <Content Include="Views\Home\BusList.cshtml" />
+    <Content Include="Views\Home\SelectSeat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -102,6 +102,15 @@ namespace BusReservation.Controllers
             int id = Convert.ToInt32(Session["UserId"]);
             return View();
         }
+        public ActionResult BusList()
+        {
+            return View();
+        }
+
+        public ActionResult SelectSeat()
+        {
+            return View();
+        }
 
     }
 }

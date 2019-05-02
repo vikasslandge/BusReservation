@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "BusList";
+}
+
+<style>
+    .sidediv {
+        position: fixed;
+        float: left;
+        height: 250px;
+        background-color: whitesmoke;
+        margin: 50px 30px;
+    }
+
+    .fontstyle {
+        font-weight: 700px;
+        color: black;
+        font-size: 20px;
+    }
+
+    .dateDispOnw {
+        position: relative;
+    }
+
+    .searchDate {
+        background: none;
+        outline: 0 none !important;
+        border: 0 none;
+        width: 80px;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .searchday {
+        position: absolute;
+        width: 56px;
+        font-size: 12px;
+        top: 18px;
+        right: -6px;
+    }
+
+    .boxed {
+        height: 100px;
+        border: 1px solid black;
+        box-sizing: border-box;
+        background-color: whitesmoke;
+        margin: 40px 20px;
+        padding: 30px;
+    }
+
+        .boxed:hover {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+</style>
+
+
+
+<div class="row">
+    <div class="col-md-3 sidediv">
+
+
+    </div>
+    <div class="col-sm-8 " style="margin-top: 50px;left: 32%;">
+        <div class="" style="background-color: whitesmoke;height: 100px;">
+            <span title="Pune" class="fontstyle" style="margin-left: 35%;">Pune</span>
+            <i class="icon icon-right-arrow fontstyle"></i>
+            <span title="Mumbai" class="fontstyle"> Mumbai</span>
+            <span class="prev fontstyle"><i class="icon icon-left"></i></span>
+            <span class="dateDispOnw">
+                <input type="text" id="searchDat" readonly class="searchDate fontstyle" value="02 May">
+                <span class="searchday fontstyle">Thu</span>
+            </span>
+            <span class="next fontstyle"><i class="icon icon-right"></i></span>
+
+        </div>
+
+        <div class="boxed">
+            <div class="row">
+                <div class="col-sm-3">
+                    <b>Neeta Travels</b>
+                    <br>
+                    <p>A/C Sleeper</p>
+                </div>
+                <div class="col-sm-2">
+                    <b>1:00PM</b>
+                    <br>
+                    <p><span class="glyphicon glyphicon-map-marker"></span>Swargate</p>
+                </div>
+                <div class="col-sm-2">
+                    <b>5:00PM</b>
+                    <br>
+                    <p><span class="glyphicon glyphicon-map-marker"></span>Mumbai</p>
+                </div>
+                <div class="col-sm-1">
+                    <p>3.3<span class="glyphicon glyphicon-star"></span></p>
+                </div>
+                <div class="col-sm-2">
+                    INR<b>350</b>
+                    <br />
+                    <p style="font-size:12px">Available Seats 35</p>
+                </div>
+                <div class="col-sm-2">
+                    @Html.ActionLink("View Seats", "SelectSeat","", new { @class= "btn btn-danger  text-uppercase" })
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>

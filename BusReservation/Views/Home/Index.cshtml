@@ -8,7 +8,8 @@
 <div class="container-fluid" style="padding:0">
     <div class="mainbg" style="opacity:0.7"></div>
     <h1 class="text-center infohead">BOOK A BUS</h1><br>
-    <form>
+    @using (Html.BeginForm("BusList","Home",FormMethod.Get))
+    {
         <div class="row infodata">
             <div class="col-md-3">
                 <select class="form-control " id="source">
@@ -32,10 +33,10 @@
                 <input type="date" name="departureDate" class="form-control" data-toggle="datepicker" placeholder="01-01-2019">
             </div>
             <div class="col-md-3">
-                <input type="button" class="btn-danger btn" value="Search bus">
+                <input type="submit" class="btn-danger btn" value="Search bus">
             </div>
         </div>
-    </form>
+    }
 </div>
 
 <!---------------------information about company-------------------------->
