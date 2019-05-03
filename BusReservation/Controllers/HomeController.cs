@@ -122,6 +122,13 @@ namespace BusReservation.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpPost]
+        public ActionResult Passenger(FormCollection collection)
+        {
+            var result = soapClient.AddPassanger(collection["Name"], Convert.ToInt32(collection["Age"]), collection["Gender"], collection["Phone"], Convert.ToInt32(collection["SeatNo"]));
+            return View();
+        }
+
         public ActionResult Cancel()
         {
             return View();
