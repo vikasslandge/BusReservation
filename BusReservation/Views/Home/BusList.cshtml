@@ -54,23 +54,23 @@
 </style>
 
 
-
-<div class="row">
+<div class="row" onload="FindDay()">
     <div class="col-md-3 sidediv">
 
 
     </div>
-    <div class="col-sm-8 " style="margin-top: 50px;left: 32%;">
+    
+    <div class="col-sm-8 " style="margin-top: 40px;left: 32%;">
         <div class="" style="background-color: whitesmoke;height: 100px;">
-            <span title="Pune" class="fontstyle" style="margin-left: 35%;">@ViewBag.source</span>
-            <i class="icon icon-right-arrow fontstyle"></i>
-            <span title="Mumbai" class="fontstyle"> @ViewBag.destination</span>
-            <span class="prev fontstyle"><i class="icon icon-left"></i></span>
+            <span class="fontstyle" style="margin-left: 35%;">@ViewBag.source</span>
+            <i class="glyphicon glyphicon-arrow-right"></i>
+            <span class="fontstyle"> @ViewBag.destination</span>
+            <span class="prev fontstyle"><i class="glyphicon glyphicon-menu-left"></i></span>
             <span class="dateDispOnw">
-                <input type="text" id="searchDat" readonly class="searchDate fontstyle" value="02 May">
-                <span class="searchday fontstyle">Thu</span>
+                <input type="text" id="searchDat" readonly class="searchDate fontstyle" value=@ViewBag.doj>
+                <span class="searchday fontstyle" id="Day" ></span>
             </span>
-            <span class="next fontstyle"><i class="icon icon-right"></i></span>
+            <span class="next fontstyle"><i class="glyphicon glyphicon-menu-right"></i></span>
 
         </div>
 
@@ -98,7 +98,7 @@
                         <p style="font-size:12px">Available Seats  @Html.DisplayFor(modelItem => item.AvailableSeats)</p>
                     </div>
                     <div class="col-sm-2">
-                        @Html.ActionLink("View Seats", "SelectSeat", "", new { @class = "btn btn-danger  text-uppercase" })
+                        @Html.ActionLink("View Seats", "SelectSeat","Home", new { id = item.RouteId }, new { @class = "btn btn-danger  text-uppercase" })
                     </div>
                 </div>
 
@@ -110,3 +110,21 @@
 
 </div>
 
+
+
+<script>
+    function FindDay() {
+  var day =@ViewBag.doj;
+  var weekday = new Array(7);
+  weekday[0] = "Sunday";
+  weekday[1] = "Monday";
+  weekday[2] = "Tuesday";
+  weekday[3] = "Wednesday";
+  weekday[4] = "Thursday";
+  weekday[5] = "Friday";
+  weekday[6] = "Saturday";
+
+  var name = weekday[day.getDay()];
+        document.getElementById("Day").innerHTML = name;
+}
+</script>

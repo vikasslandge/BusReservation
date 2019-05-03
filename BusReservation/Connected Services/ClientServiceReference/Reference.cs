@@ -547,6 +547,158 @@ namespace BusReservation.ClientServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GetRouteDetailById_Result", Namespace="http://tempuri.org/")]
+    [System.SerializableAttribute()]
+    public partial class GetRouteDetailById_Result : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private int RouteIdField;
+        
+        private int BusIdField;
+        
+        private int SourceIdField;
+        
+        private int DestinationIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DateOfJourneyField;
+        
+        private double PriceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ArrivalTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DepartureTimeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int RouteId {
+            get {
+                return this.RouteIdField;
+            }
+            set {
+                if ((this.RouteIdField.Equals(value) != true)) {
+                    this.RouteIdField = value;
+                    this.RaisePropertyChanged("RouteId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=1)]
+        public int BusId {
+            get {
+                return this.BusIdField;
+            }
+            set {
+                if ((this.BusIdField.Equals(value) != true)) {
+                    this.BusIdField = value;
+                    this.RaisePropertyChanged("BusId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        public int SourceId {
+            get {
+                return this.SourceIdField;
+            }
+            set {
+                if ((this.SourceIdField.Equals(value) != true)) {
+                    this.SourceIdField = value;
+                    this.RaisePropertyChanged("SourceId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        public int DestinationId {
+            get {
+                return this.DestinationIdField;
+            }
+            set {
+                if ((this.DestinationIdField.Equals(value) != true)) {
+                    this.DestinationIdField = value;
+                    this.RaisePropertyChanged("DestinationId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=4)]
+        public string DateOfJourney {
+            get {
+                return this.DateOfJourneyField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DateOfJourneyField, value) != true)) {
+                    this.DateOfJourneyField = value;
+                    this.RaisePropertyChanged("DateOfJourney");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        public double Price {
+            get {
+                return this.PriceField;
+            }
+            set {
+                if ((this.PriceField.Equals(value) != true)) {
+                    this.PriceField = value;
+                    this.RaisePropertyChanged("Price");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        public string ArrivalTime {
+            get {
+                return this.ArrivalTimeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ArrivalTimeField, value) != true)) {
+                    this.ArrivalTimeField = value;
+                    this.RaisePropertyChanged("ArrivalTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
+        public string DepartureTime {
+            get {
+                return this.DepartureTimeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DepartureTimeField, value) != true)) {
+                    this.DepartureTimeField = value;
+                    this.RaisePropertyChanged("DepartureTime");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ClientServiceReference.ClientWebServiceSoap")]
     public interface ClientWebServiceSoap {
@@ -604,6 +756,13 @@ namespace BusReservation.ClientServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetPassengerDetails", ReplyAction="*")]
         System.Threading.Tasks.Task<BusReservation.ClientServiceReference.GetPassengerDetailsResponse> GetPassengerDetailsAsync(BusReservation.ClientServiceReference.GetPassengerDetailsRequest request);
+        
+        // CODEGEN: Generating message contract since element name GetRouteByIdResult from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRouteById", ReplyAction="*")]
+        BusReservation.ClientServiceReference.GetRouteByIdResponse GetRouteById(BusReservation.ClientServiceReference.GetRouteByIdRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRouteById", ReplyAction="*")]
+        System.Threading.Tasks.Task<BusReservation.ClientServiceReference.GetRouteByIdResponse> GetRouteByIdAsync(BusReservation.ClientServiceReference.GetRouteByIdRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1024,6 +1183,74 @@ namespace BusReservation.ClientServiceReference {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetRouteByIdRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRouteById", Namespace="http://tempuri.org/", Order=0)]
+        public BusReservation.ClientServiceReference.GetRouteByIdRequestBody Body;
+        
+        public GetRouteByIdRequest() {
+        }
+        
+        public GetRouteByIdRequest(BusReservation.ClientServiceReference.GetRouteByIdRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetRouteByIdRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public int id;
+        
+        public GetRouteByIdRequestBody() {
+        }
+        
+        public GetRouteByIdRequestBody(int id) {
+            this.id = id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetRouteByIdResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetRouteByIdResponse", Namespace="http://tempuri.org/", Order=0)]
+        public BusReservation.ClientServiceReference.GetRouteByIdResponseBody Body;
+        
+        public GetRouteByIdResponse() {
+        }
+        
+        public GetRouteByIdResponse(BusReservation.ClientServiceReference.GetRouteByIdResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetRouteByIdResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public BusReservation.ClientServiceReference.GetRouteDetailById_Result[] GetRouteByIdResult;
+        
+        public GetRouteByIdResponseBody() {
+        }
+        
+        public GetRouteByIdResponseBody(BusReservation.ClientServiceReference.GetRouteDetailById_Result[] GetRouteByIdResult) {
+            this.GetRouteByIdResult = GetRouteByIdResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface ClientWebServiceSoapChannel : BusReservation.ClientServiceReference.ClientWebServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -1223,6 +1450,31 @@ namespace BusReservation.ClientServiceReference {
             inValue.Body = new BusReservation.ClientServiceReference.GetPassengerDetailsRequestBody();
             inValue.Body.ticketId = ticketId;
             return ((BusReservation.ClientServiceReference.ClientWebServiceSoap)(this)).GetPassengerDetailsAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        BusReservation.ClientServiceReference.GetRouteByIdResponse BusReservation.ClientServiceReference.ClientWebServiceSoap.GetRouteById(BusReservation.ClientServiceReference.GetRouteByIdRequest request) {
+            return base.Channel.GetRouteById(request);
+        }
+        
+        public BusReservation.ClientServiceReference.GetRouteDetailById_Result[] GetRouteById(int id) {
+            BusReservation.ClientServiceReference.GetRouteByIdRequest inValue = new BusReservation.ClientServiceReference.GetRouteByIdRequest();
+            inValue.Body = new BusReservation.ClientServiceReference.GetRouteByIdRequestBody();
+            inValue.Body.id = id;
+            BusReservation.ClientServiceReference.GetRouteByIdResponse retVal = ((BusReservation.ClientServiceReference.ClientWebServiceSoap)(this)).GetRouteById(inValue);
+            return retVal.Body.GetRouteByIdResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<BusReservation.ClientServiceReference.GetRouteByIdResponse> BusReservation.ClientServiceReference.ClientWebServiceSoap.GetRouteByIdAsync(BusReservation.ClientServiceReference.GetRouteByIdRequest request) {
+            return base.Channel.GetRouteByIdAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<BusReservation.ClientServiceReference.GetRouteByIdResponse> GetRouteByIdAsync(int id) {
+            BusReservation.ClientServiceReference.GetRouteByIdRequest inValue = new BusReservation.ClientServiceReference.GetRouteByIdRequest();
+            inValue.Body = new BusReservation.ClientServiceReference.GetRouteByIdRequestBody();
+            inValue.Body.id = id;
+            return ((BusReservation.ClientServiceReference.ClientWebServiceSoap)(this)).GetRouteByIdAsync(inValue);
         }
     }
 }

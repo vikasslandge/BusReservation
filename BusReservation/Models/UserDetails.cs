@@ -11,7 +11,7 @@ namespace BusReservation.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class UserDetails
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +23,9 @@ namespace BusReservation.Models
         public int UserId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+
         public string Password { get; set; }
+
         public string MobileNumber { get; set; }
         public string Gender { get; set; }
         public System.DateTime DateOfBirth { get; set; }

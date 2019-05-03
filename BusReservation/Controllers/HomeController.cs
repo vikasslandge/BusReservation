@@ -20,28 +20,57 @@ namespace BusReservation.Controllers
         [HttpPost]
         public ActionResult BusList(FormCollection collection)
         {
-            ViewBag.source = collection["Source"];
-            ViewBag.destination = collection["Destination"];
+           
             int source = Convert.ToInt32(collection["Source"]);
-            int destination = Convert.ToInt32(collection["Destination"]);
+            string sourceName = soapClient.GetCityDetails().Where(id => id.CityId.Equals(source)).Select(name => name.CityName).FirstOrDefault();
+            ViewBag.source = sourceName;
+
+            int destination = Convert.ToInt32(collection["Destination"]);   
+            string destinationName = soapClient.GetCityDetails().Where(id => id.CityId.Equals(destination)).Select(name => name.CityName).FirstOrDefault();
+            ViewBag.destination = destinationName;
+
+
             DateTime doj = Convert.ToDateTime(collection["DateOfJourney"]).Date;
+            ViewBag.doj = doj;
             //var result = soapClient.GetRouteDetails(Convert.ToInt32(collection["Source"]), Convert.ToInt32(collection["Destination"]), Convert.ToDateTime(collection["DateOfJourney"]));
             return View(soapClient.GetRouteDetails(source, destination, doj));
         }
+        public ActionResult SelectSeat(int id)
+        {
+            var result=soapClient.GetRouteById(id).Single();
 
+            int source = result.SourceId;
+            string sourceName = soapClient.GetCityDetails().Where(ci => ci.CityId.Equals(source)).Select(name => name.CityName).FirstOrDefault();
+            ViewBag.source = sourceName;
+
+            int destination = result.DestinationId;
+            string destinationName = soapClient.GetCityDetails().Where(ci => ci.CityId.Equals(destination)).Select(name => name.CityName).FirstOrDefault();
+            ViewBag.destination = destinationName;
+
+            TimeSpan departure =Convert.ToDateTime(result.DepartureTime).TimeOfDay;
+            ViewBag.departure = departure;
+
+            TimeSpan arrival = Convert.ToDateTime(result.ArrivalTime).TimeOfDay;
+            ViewBag.arrival = arrival;
+
+            double price =result.Price;
+            ViewBag.price = price;
+            
+            return View();
+        }
 
         [HttpPost]
         public ActionResult Register(UserDetails user, FormCollection collection)
         {
             UserDetails detail = new UserDetails();
-            detail.UserId = user.UserId;
+            //detail.UserId = user.UserId;
             detail.Name = collection["name"];
             detail.Password = collection["password"];
             detail.MobileNumber = collection["mobileNumber"];
             detail.Gender = collection["Gender"];
-            detail.Email = collection["email"];
-            detail.Address = collection["address"];
-            detail.DateOfBirth = Convert.ToDateTime(collection["DateOfBirth"]);
+            detail.Email = collection["Email"];
+            detail.Address = collection["Address"];
+            detail.DateOfBirth = Convert.ToDateTime(collection["DateOfBirth"]).Date;
             detail.UserType = "User";
 
             entities.UserDetails.Add(detail);
@@ -122,10 +151,7 @@ namespace BusReservation.Controllers
             return View();
         }
 
-        public ActionResult SelectSeat()
-        {
-            return View();
-        }
+       
 
     }
 }

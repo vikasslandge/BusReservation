@@ -95,14 +95,16 @@
                     @using (Html.BeginForm("Authorize", "Home", FormMethod.Post))
                     {
 
-                        <div class="form-group">
-                            <label for="mobilenumber"><span class="glyphicon glyphicon-user"></span>Mobile Number<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" name="MobileNumber" id="MobileNumber" placeholder="Mobile Number">
-                        </div>
-                        <div class="form-group">
-                            <label for="password"><span class="glyphicon glyphicon-lock"></span>Password<span style="color:red">*</span></label>
-                            <input type="password" class="form-control" name="Password" id="Password" placeholder="Password">
-                        </div>
+                    <div class="form-group">
+                        <label for="mobilenumber"><span class="glyphicon glyphicon-user"></span>Mobile Number<span style="color:red">*</span></label>
+                        <input type="text" class="form-control" name="MobileNumber" id="MobileNumber" placeholder="Mobile Number">
+                        @Html.ValidationMessage("MobileNumber", "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><span class="glyphicon glyphicon-lock"></span>Password<span style="color:red">*</span></label>
+                        <input type="password" class="form-control" name="Password" id="Password" placeholder="Password">
+                        @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
+                    </div>
 
                         <button type="submit" class="btn btn-success">
                             <span class="glyphicon glyphicon-ok"></span>
@@ -113,7 +115,7 @@
                             Cancel
                         </button>
                     }
-                    </div>
+                </div>
 
                 <div class="modal-footer">
                     <p>New user<a href="#" data-toggle="modal" data-target="#register"> register here.</a></p>
@@ -139,32 +141,38 @@
                         <div class="form-group">
                             <label for="name"><span class="glyphicon glyphicon-user"></span>Name<span style="color:red">*</span></label>
                             <input type="text" class="form-control" id="Name" name="Name" placeholder="Name">
+                            @Html.ValidationMessage("Name", "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
-                            <label for="email"><span class="glyphicon glyphicon-user"></span>Email<span style="color:red">*</span></label>
-                            <input type="email" class="form-control" id="Email" placeholder="Email">
+                            <label for="text"><span class="glyphicon glyphicon-user"></span>Email<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="Email" name="Email" placeholder="Email">
+                            @Html.ValidationMessage("Email", "Email is required", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <label for="password"><span class="glyphicon glyphicon-lock"></span>Password<span style="color:red">*</span></label>
                             <input type="password" class="form-control" id="Password" name="Password" placeholder="Password">
+                            @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <label for="number"><span class="glyphicon glyphicon-lock"></span>Mobile Number<span style="color:red">*</span></label>
                             <input type="number" class="form-control" id="MobileNumber" name="MobileNumber" placeholder="Mobile number">
+                            @Html.ValidationMessage("MobileNumber", "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
-                            <label for="radio"><span class="glyphicon glyphicon-user"></span>Gender<span style="color:red">*</span></label>
+                            <label for="radio"><span class="fa fa-mars"></span>Gender<span style="color:red">*</span></label>
                             <br />
-                            <input type="radio" name="Gender" id="Male" value="Male"> Male<br>
-                            <input type="radio" name="Gender" id="Female" value="Female"> Female<br>
+                            <input type="radio" name="gender" id="male" value="Male"> Male
+                            <input type="radio" class="float-left" id="female" name="gender" value="Female"> Female<br>
                         </div>
                         <div class="form-group">
-                            <label for="number"><span class="glyphicon glyphicon-lock"></span>Age<span style="color:red">*</span></label>
-                            <input type="number" class="form-control" id="DateOfBirth" name="DateOfBirth" placeholder="Age">
+                            <label for="date"><span class="glyphicon glyphicon-lock"></span>DateOfBirth<span style="color:red">*</span></label>
+                            <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" placeholder="DateOfBirth">
+                            @Html.ValidationMessage("DateOfBirth", "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <label for="address"><span class="glyphicon glyphicon-user"></span>Address<span style="color:red">*</span></label>
                             <input type="text" class="form-control" id="Address" name="Address" placeholder="Address">
+                            @Html.ValidationMessage("Address", "", new { @class = "text-danger" })
                         </div>
 
                         <button type="submit" id="Submit" class="btn btn-success">

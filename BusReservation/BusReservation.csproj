@@ -207,6 +207,12 @@
     <Content Include="Connected Services\ClientServiceReference\BusReservation.ClientServiceReference.HelloWorldResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\ClientServiceReference\BusReservation.ClientServiceReference.GetRouteByIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClientServiceReference\BusReservation.ClientServiceReference.GetRouteDetailById_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\ClientServiceReference\ClientWebService.disco" />
     <None Include="Connected Services\ClientServiceReference\configuration91.svcinfo" />
     <None Include="Connected Services\ClientServiceReference\configuration.svcinfo" />
@@ -269,6 +275,7 @@
     <Content Include="MyFiles\Images\banner.jpeg" />
     <Content Include="MyFiles\Images\pexels-photo-221284.jpeg" />
     <Content Include="MyFiles\Images\pexels-photo-388304.jpeg" />
+    <Content Include="MyFiles\Images\reservedseat.png" />
     <Content Include="MyFiles\Images\seatUnbook.png" />
     <Content Include="MyFiles\Images\sheild.png" />
     <Content Include="MyFiles\Images\steering.png" />

@@ -42,8 +42,8 @@
             </div>
             <div class="col-md-3">
                 @*<input type="date" id="DateOfJourney" name="departureDate" class="form-control" data-toggle="datepicker" placeholder="MM-DD-YYYY">*@
-                @*@Html.EditorFor(model => model.DateOfJourney, new { htmlAttributes = new { @class = "datepicker.now form-control", type = "date" } })*@
-                <input placeholder="Journey Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+                @Html.EditorFor(model => model.DateOfJourney, new { htmlAttributes = new { @class = "datepicker.now form-control", type = "date" } })
+               @* <input placeholder="Journey Date" class="form-control" type="date" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">*@
                 @Html.ValidationMessageFor(model => model.DateOfJourney, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-3">

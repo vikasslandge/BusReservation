@@ -1,4 +1,5 @@
-﻿<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+﻿@*@model BusReservation.ClientServiceReference.GetRouteDetailById_Result*@
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 @{
@@ -15,11 +16,12 @@
         display: block;
         margin: 5px;
         background-image: url('../../MyFiles/Images/seatUnbook.png');
-        width: 45px;
-        height: 45px;
+        width: 35px;
+        height: 35px;
         text-align: center;
         background-size: cover;
     }
+
 
         .seat:hover {
         }
@@ -43,19 +45,32 @@
         width: 60px;
         margin-left: 1px;
     }
+
+    #seatDescription li {
+        list-style: none outside none;
+        padding-left: 35px;
+        float: left;
+    }
+
+    .listImage {
+        background-size: cover;
+        height: 30px;
+        width: 30px;
+    }
 </style>
 
-<div class="jumbotron">
-    <h3 class="text-center">Please Book your Seat...</h3>
-    <br />
+<div class=" row">
+    <h3 class="text-center">Please Select Your Seats...</h3>
 
-    <div align="center" class="seatStructure">
+
+    <div align="center" style="margin:20px 30px" class="seatStructure col-sm-5">
         <form id="reservation" method="post" action="">
-            <div style="background-color:white;width:280px">
+            <div style="background-color:white;width:280px;border:3px solid black;border-radius:7px">
                 <div>
                     <img src="~/MyFiles/Images/door.jpg" id="door" />
                     <img src="~/MyFiles/Images/steering.png" id="steering" />
                 </div>
+                <hr style="border-top: 2px solid black;" />
                 <div>
                     <table id="seatsBlock">
                         <tr>
@@ -210,15 +225,82 @@
                         </tr>
 
                     </table>
+
                 </div>
                 <br />
+
             </div>
+
             <button onclick="updateTextArea()" type="submit" value="Book Ticket" class="btn btn-danger" style="margin-top:20px">BOOK TICKET</button>
+            <br />
         </form>
+        <p id="error"></p>
 
     </div>
+    <div class="col-sm-6" align="center" style="margin-top:150px;" id="dataRight">
 
+        <ul id="seatDescription">
+            <li><img src="~/MyFiles/Images/seatUnbook.png" class="listImage" />Available Seat</li>
+            <br />
+            <br />
+            <li><img src="~/MyFiles/Images/reservedseat.png" class="listImage" />Booked Seat</li>
+            <br />
+            <br />
+            <li>
+                <img src="~/MyFiles/Images/book.png" class="listImage" />Selected Seat
+            </li>
+        </ul>
+        <br>
+        <br>
+
+    </div>
+    <div class="col-sm-6" align="left" id="dataRoute" style="display:none;border:1px solid black">
+        <h3>Boarding & Dropping</h3>
+
+        <div class="row">
+            <div class="col-6">
+                <p>@ViewBag.source</p>
+            </div>
+            <div class="col-4" align="center">
+                <p>@ViewBag.departure</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <p> @ViewBag.destination</p>
+            </div>
+            <div class="col-4" align="center">
+                <p>@ViewBag.arrival</p>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-6">
+                <h3>Seat No.</h3>
+            </div>
+            <div class="col-4" align="center">
+                <p id="seatno"></p>
+            </div>
+        </div>
+        <hr />
+        <h3>Fare Details</h3>
+        <div class="row">
+            <div class="col-6">
+                <p>Amount</p>
+            </div>
+            <div class="col-4" align="center">
+                <p id="count"> </p>
+            </div>
+        </div>
+
+
+
+    </div>
 </div>
+
+
+
 <script>
     function updateTextArea() {
 
@@ -235,22 +317,58 @@
                     count++;
                 }
             }
-
             //Storing in Array
 
             allNumberVals.push(count);
             $('#seatsBlock :checked').each(function () {
                 allSeatsVals.push($(this).val());
             });
-            alert("count selected seats  " + allNumberVals)
-            alert("Seat number for all selected  " + allSeatsVals);
 
+            alert("count selected seats  " + allNumberVals)
+
+            alert("Seat number for all selected  " + allSeatsVals);
+        }
+        else {
+            document.getElementById("error").innerHTML = "Please select atleast 1 seat and maximum 3 seats.";
+        }
+    }
+
+
+
+    $(":checkbox").click(function () {
+        var seatno = [];
+        $('#seatsBlock :checked').each(function () {
+            seatno.push($(this).val());
+        });
+        document.getElementById('seatno').innerHTML = seatno;
+
+
+        var inputElems = document.getElementsByTagName("input"),
+            count = 0;
+        for (var i = 0; i < inputElems.length; i++) {
+            if (inputElems[i].type == "checkbox" && inputElems[i].checked == true) {
+                count++;
+            }
+        }
+
+        var fare = count * @ViewBag.price;
+            document.getElementById('count').innerHTML=fare;
+
+    });
+
+
+    $(":checkbox").click(function () {
+        if ($("input:checked").length >= 1) {
+            $('#dataRight').hide();
+            $('#dataRoute').show();
 
         }
         else {
-            alert("Please select atleast 1 seat and maximum 3 seats.");
+            $('#dataRight').show();
+            $('#dataRoute').hide();
         }
-    }
+    });
+
     $(":checkbox").click(function () {
 
         if ($("input:checked").length == 3) {
