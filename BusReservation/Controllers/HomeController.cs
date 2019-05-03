@@ -9,11 +9,26 @@ namespace BusReservation.Controllers
 {
     public class HomeController : Controller
     {
+        ClientServiceReference.ClientWebServiceSoapClient soapClient = new ClientServiceReference.ClientWebServiceSoapClient();
         BusBookingSystemEntities entities = new BusBookingSystemEntities();
         public ActionResult Index()
         {
+            ViewBag.Source = new SelectList(soapClient.GetCityDetails(), "CityId", "CityName");
+            ViewBag.Destination = new SelectList(soapClient.GetCityDetails(), "CityId", "CityName");
             return View();
         }
+        [HttpPost]
+        public ActionResult BusList(FormCollection collection)
+        {
+            ViewBag.source = collection["Source"];
+            ViewBag.destination = collection["Destination"];
+            int source = Convert.ToInt32(collection["Source"]);
+            int destination = Convert.ToInt32(collection["Destination"]);
+            DateTime doj = Convert.ToDateTime(collection["DateOfJourney"]).Date;
+            //var result = soapClient.GetRouteDetails(Convert.ToInt32(collection["Source"]), Convert.ToInt32(collection["Destination"]), Convert.ToDateTime(collection["DateOfJourney"]));
+            return View(soapClient.GetRouteDetails(source, destination, doj));
+        }
+
 
         [HttpPost]
         public ActionResult Register(UserDetails user, FormCollection collection)
@@ -28,7 +43,7 @@ namespace BusReservation.Controllers
             detail.Address = collection["address"];
             detail.DateOfBirth = Convert.ToDateTime(collection["DateOfBirth"]);
             detail.UserType = "User";
- 
+
             entities.UserDetails.Add(detail);
             entities.SaveChanges();
 
@@ -36,12 +51,16 @@ namespace BusReservation.Controllers
         }
 
         [HttpPost]
-        public ActionResult Authorize(UserDetails login)
+        public ActionResult Authorize(UserDetails login,FormCollection collection)
         {
             using (BusBookingSystemEntities entities = new BusBookingSystemEntities())
             {
-                var userDetails = entities.UserDetails.Where(user => user.MobileNumber == login.MobileNumber && user.Password == login.Password).FirstOrDefault();
-                int loginid = entities.UserDetails.Where(s => s.MobileNumber == userDetails.MobileNumber).Select(s1 => s1.UserId).FirstOrDefault();
+                string num = login.MobileNumber;
+                string pwd = login.Password;
+
+                var userDetails = entities.UserDetails.Where(user => user.MobileNumber.Equals(num) && user.Password.Equals(pwd)).FirstOrDefault();
+                //int loginid = entities.UserDetails.Where(s => s.MobileNumber == userDetails.MobileNumber).Select(s1 => s1.UserId).FirstOrDefault();
+                int loginid = userDetails.UserId;
                 if (userDetails == null)
                 {
                     return View("Index", login);
@@ -73,7 +92,7 @@ namespace BusReservation.Controllers
             Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
-        
+
         public ActionResult Cancel()
         {
             return View();
@@ -100,10 +119,6 @@ namespace BusReservation.Controllers
         public ActionResult MyTrips()
         {
             int id = Convert.ToInt32(Session["UserId"]);
-            return View();
-        }
-        public ActionResult BusList()
-        {
             return View();
         }
 

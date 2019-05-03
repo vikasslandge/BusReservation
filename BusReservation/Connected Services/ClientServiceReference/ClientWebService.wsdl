@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCityDetails">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCityDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCityDetailsResult" type="tns:ArrayOfGetCityDetails_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGetCityDetails_Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GetCityDetails_Result" nillable="true" type="tns:GetCityDetails_Result" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetCityDetails_Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CityId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CityName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CityState" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRouteDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sourceId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="destinationId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="dateOfJourney" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRouteDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRouteDetailsResult" type="tns:ArrayOfGetRouteDetails_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGetRouteDetails_Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GetRouteDetails_Result" nillable="true" type="tns:GetRouteDetails_Result" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetRouteDetails_Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RouteId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BusId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SourceId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DestinationId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateOfJourney" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Price" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="ArrivalTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DepartureTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Rating" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="AvailableSeats" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBookingStatuses">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="busId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBookingStatusesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBookingStatusesResult" type="tns:ArrayOfGetBookingStatus_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGetBookingStatus_Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GetBookingStatus_Result" nillable="true" type="tns:GetBookingStatus_Result" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetBookingStatus_Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BusId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SeatNo" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SeatType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BookTicket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="seatNo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="busId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BookTicketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BookTicketResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTicketDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="routeId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="totalNumberOfSeats" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTicketDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddTicketDetailsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddPassanger">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="age" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="gender" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="number" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="seatNo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddPassangerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddPassangerResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPassengerDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ticketId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPassengerDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPassengerDetailsResult" type="tns:ArrayOfGetPassangerDetails_Result" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGetPassangerDetails_Result">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GetPassangerDetails_Result" nillable="true" type="tns:GetPassangerDetails_Result" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetPassangerDetails_Result">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PassengerId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Age" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TicketId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SeatNo" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCityDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCityDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetCityDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCityDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRouteDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRouteDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetRouteDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRouteDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBookingStatusesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBookingStatuses" />
+  </wsdl:message>
+  <wsdl:message name="GetBookingStatusesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBookingStatusesResponse" />
+  </wsdl:message>
+  <wsdl:message name="BookTicketSoapIn">
+    <wsdl:part name="parameters" element="tns:BookTicket" />
+  </wsdl:message>
+  <wsdl:message name="BookTicketSoapOut">
+    <wsdl:part name="parameters" element="tns:BookTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddTicketDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:AddTicketDetails" />
+  </wsdl:message>
+  <wsdl:message name="AddTicketDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:AddTicketDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddPassangerSoapIn">
+    <wsdl:part name="parameters" element="tns:AddPassanger" />
+  </wsdl:message>
+  <wsdl:message name="AddPassangerSoapOut">
+    <wsdl:part name="parameters" element="tns:AddPassangerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPassengerDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPassengerDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetPassengerDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPassengerDetailsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ClientWebServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDetails">
+      <wsdl:input message="tns:GetCityDetailsSoapIn" />
+      <wsdl:output message="tns:GetCityDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRouteDetails">
+      <wsdl:input message="tns:GetRouteDetailsSoapIn" />
+      <wsdl:output message="tns:GetRouteDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBookingStatuses">
+      <wsdl:input message="tns:GetBookingStatusesSoapIn" />
+      <wsdl:output message="tns:GetBookingStatusesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BookTicket">
+      <wsdl:input message="tns:BookTicketSoapIn" />
+      <wsdl:output message="tns:BookTicketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTicketDetails">
+      <wsdl:input message="tns:AddTicketDetailsSoapIn" />
+      <wsdl:output message="tns:AddTicketDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPassanger">
+      <wsdl:input message="tns:AddPassangerSoapIn" />
+      <wsdl:output message="tns:AddPassangerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPassengerDetails">
+      <wsdl:input message="tns:GetPassengerDetailsSoapIn" />
+      <wsdl:output message="tns:GetPassengerDetailsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ClientWebServiceSoap" type="tns:ClientWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDetails">
+      <soap:operation soapAction="http://tempuri.org/GetCityDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRouteDetails">
+      <soap:operation soapAction="http://tempuri.org/GetRouteDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookingStatuses">
+      <soap:operation soapAction="http://tempuri.org/GetBookingStatuses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookTicket">
+      <soap:operation soapAction="http://tempuri.org/BookTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTicketDetails">
+      <soap:operation soapAction="http://tempuri.org/AddTicketDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPassanger">
+      <soap:operation soapAction="http://tempuri.org/AddPassanger" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPassengerDetails">
+      <soap:operation soapAction="http://tempuri.org/GetPassengerDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ClientWebServiceSoap12" type="tns:ClientWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCityDetails">
+      <soap12:operation soapAction="http://tempuri.org/GetCityDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRouteDetails">
+      <soap12:operation soapAction="http://tempuri.org/GetRouteDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookingStatuses">
+      <soap12:operation soapAction="http://tempuri.org/GetBookingStatuses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookTicket">
+      <soap12:operation soapAction="http://tempuri.org/BookTicket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTicketDetails">
+      <soap12:operation soapAction="http://tempuri.org/AddTicketDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPassanger">
+      <soap12:operation soapAction="http://tempuri.org/AddPassanger" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPassengerDetails">
+      <soap12:operation soapAction="http://tempuri.org/GetPassengerDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ClientWebService">
+    <wsdl:port name="ClientWebServiceSoap" binding="tns:ClientWebServiceSoap">
+      <soap:address location="http://localhost:49920/ClientWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ClientWebServiceSoap12" binding="tns:ClientWebServiceSoap12">
+      <soap12:address location="http://localhost:49920/ClientWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,39 +1,53 @@
-﻿
+﻿@model BusReservation.ClientServiceReference.GetRouteDetails_Result
+
 @{
     ViewBag.Title = "Index";
 }
 
+<script>
+    //source-destination cityName validation
+    $(document).ready(function () {
+        var $dropdown1 = $("select[name='Source']");
+        var $dropdown2 = $("select[name='Destination']");
+
+        $dropdown1.change(function () {
+            $dropdown2.find('option').prop("disabled", false);
+
+            var selectedItem = $(this).val();
+            if (selectedItem) {
+                $dropdown2.find('option[value="' + selectedItem + '"]').prop("disabled", true);
+            }
+        });
+    });
+
+</script>
+
+
 
 <!------------------Search bus code---------------->
-<div class="container-fluid" style="padding:0">
+<div class="container-fluid" style="padding:0" id="busTicket">
     <div class="mainbg" style="opacity:0.7"></div>
     <h1 class="text-center infohead">BOOK A BUS</h1><br>
-    @using (Html.BeginForm("BusList","Home",FormMethod.Get))
+
+    @using (Html.BeginForm("BusList", "Home", FormMethod.Post))
     {
+
+        @Html.AntiForgeryToken()
         <div class="row infodata">
             <div class="col-md-3">
-                <select class="form-control " id="source">
-                    <option value="default">Source city</option>
-
-                    <option value="Pune">Pune</option>
-                    <option value="Mumbai">Mumbai</option>
-                    <option value="Delhi">Delhi</option>
-                </select>
+                @Html.DropDownList("Source", (IEnumerable<SelectListItem>)ViewBag.Source, "Source", new { @class = "form-control" })
             </div>
             <div class="col-md-3">
-                <select class="form-control " id="destination">
-                    <option value="default">Destination city</option><!-- /.option-->
-
-                    <option value="Pune">Banglore</option>
-                    <option value="Mumbai">Hydrabad</option>
-                    <option value="Delhi">Chennai</option>
-                </select>
+                @Html.DropDownList("Destination", (IEnumerable<SelectListItem>)ViewBag.Destination, "Destination", new { @class = "form-control" })
             </div>
             <div class="col-md-3">
-                <input type="date" name="departureDate" class="form-control" data-toggle="datepicker" placeholder="01-01-2019">
+                @*<input type="date" id="DateOfJourney" name="departureDate" class="form-control" data-toggle="datepicker" placeholder="MM-DD-YYYY">*@
+                @*@Html.EditorFor(model => model.DateOfJourney, new { htmlAttributes = new { @class = "datepicker.now form-control", type = "date" } })*@
+                <input placeholder="Journey Date" class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+                @Html.ValidationMessageFor(model => model.DateOfJourney, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-3">
-                <input type="submit" class="btn-danger btn" value="Search bus">
+                <input type="submit" class="btn-danger btn" value="Search Bus">
             </div>
         </div>
     }
@@ -88,9 +102,9 @@
                         </div>
                     </div>
                     <div class="about-btn">
-                        <button class="about-view btn-danger form-control discount-offer-btn">
+                        <p class="about-view btn-danger form-control discount-offer-btn">
                             Register now
-                        </button>
+                        </p>
                     </div>
                 </div>
             </div>

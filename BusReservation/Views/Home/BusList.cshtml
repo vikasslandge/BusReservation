@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<BusReservation.ClientServiceReference.GetRouteDetails_Result>
 @{
     ViewBag.Title = "BusList";
 }
@@ -62,9 +62,9 @@
     </div>
     <div class="col-sm-8 " style="margin-top: 50px;left: 32%;">
         <div class="" style="background-color: whitesmoke;height: 100px;">
-            <span title="Pune" class="fontstyle" style="margin-left: 35%;">Pune</span>
+            <span title="Pune" class="fontstyle" style="margin-left: 35%;">@ViewBag.source</span>
             <i class="icon icon-right-arrow fontstyle"></i>
-            <span title="Mumbai" class="fontstyle"> Mumbai</span>
+            <span title="Mumbai" class="fontstyle"> @ViewBag.destination</span>
             <span class="prev fontstyle"><i class="icon icon-left"></i></span>
             <span class="dateDispOnw">
                 <input type="text" id="searchDat" readonly class="searchDate fontstyle" value="02 May">
@@ -74,39 +74,39 @@
 
         </div>
 
-        <div class="boxed">
-            <div class="row">
-                <div class="col-sm-3">
-                    <b>Neeta Travels</b>
-                    <br>
-                    <p>A/C Sleeper</p>
+        @foreach (var item in Model)
+        {
+            <div class="boxed">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <b> @Html.DisplayFor(modelItem => item.BusName)</b>
+                        <br>
+                        <p> @Html.DisplayFor(modelItem => item.Type)</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <b><span class="glyphicon glyphicon-map-marker"></span> @Html.DisplayFor(modelItem => item.DepartureTime)</b>
+                    </div>
+                    <div class="col-sm-2">
+                        <b><span class="glyphicon glyphicon-map-marker"></span> @Html.DisplayFor(modelItem => item.ArrivalTime)</b>
+                    </div>
+                    <div class="col-sm-1">
+                        <p> @Html.DisplayFor(modelItem => item.Rating)<span class="glyphicon glyphicon-star bg-primary"></span></p>
+                    </div>
+                    <div class="col-sm-2">
+                        INR<b> @Html.DisplayFor(modelItem => item.Price)</b>
+                        <br />
+                        <p style="font-size:12px">Available Seats  @Html.DisplayFor(modelItem => item.AvailableSeats)</p>
+                    </div>
+                    <div class="col-sm-2">
+                        @Html.ActionLink("View Seats", "SelectSeat", "", new { @class = "btn btn-danger  text-uppercase" })
+                    </div>
                 </div>
-                <div class="col-sm-2">
-                    <b>1:00PM</b>
-                    <br>
-                    <p><span class="glyphicon glyphicon-map-marker"></span>Swargate</p>
-                </div>
-                <div class="col-sm-2">
-                    <b>5:00PM</b>
-                    <br>
-                    <p><span class="glyphicon glyphicon-map-marker"></span>Mumbai</p>
-                </div>
-                <div class="col-sm-1">
-                    <p>3.3<span class="glyphicon glyphicon-star"></span></p>
-                </div>
-                <div class="col-sm-2">
-                    INR<b>350</b>
-                    <br />
-                    <p style="font-size:12px">Available Seats 35</p>
-                </div>
-                <div class="col-sm-2">
-                    @Html.ActionLink("View Seats", "SelectSeat","", new { @class= "btn btn-danger  text-uppercase" })
-                </div>
-            </div>
 
-        </div>
+            </div>
+        }
 
     </div>
 
 
 </div>
+

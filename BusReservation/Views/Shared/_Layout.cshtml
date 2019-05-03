@@ -1,4 +1,4 @@
-﻿@model BusReservation.Models.UserDetails
+﻿@*@model BusReservation.Models.UserDetails*@
 <html>
 <head>
     <meta charset="utf-8">
@@ -22,8 +22,9 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand brandNav" href="@Url.Action("Index","Home")">
-                    <img src="~/MyFiles/Images/buslogo.jpg" alt="buslogo" style="width:40px;">
+                    <img src="~/MyFiles/Images/bus-icon-12989.png" alt="buslogo" style="width:40px;">
                 </a>
+
                 <button type="button" class="navbar-toggle alert-dark" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -77,7 +78,11 @@
         </div>
     </nav>
 
-    <!-------------------Login Modal content------------------->
+
+
+
+
+    <!-------------------Login Modal content----------------- -->
     <div class="modal fade" id="loginModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -87,30 +92,28 @@
                 </div>
 
                 <div class="modal-body">
-
                     @using (Html.BeginForm("Authorize", "Home", FormMethod.Post))
                     {
+
                         <div class="form-group">
-                            <label for="mobileNumber"><span class="glyphicon glyphicon-user"></span>Mobile Number<span style="color:red">*</span></label>
-                            @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                            <label for="mobilenumber"><span class="glyphicon glyphicon-user"></span>Mobile Number<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" name="MobileNumber" id="MobileNumber" placeholder="Mobile Number">
                         </div>
                         <div class="form-group">
                             <label for="password"><span class="glyphicon glyphicon-lock"></span>Password<span style="color:red">*</span></label>
-                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            <input type="password" class="form-control" name="Password" id="Password" placeholder="Password">
                         </div>
 
-                        <button type="submit" id="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-success">
                             <span class="glyphicon glyphicon-ok"></span>
                             Login
                         </button>
-                        <button type="reset" id="cancel" class="btn btn-danger btn-default" data-dismiss="modal">
+                        <button type="reset" class="btn btn-danger btn-default" data-dismiss="modal">
                             <span class="glyphicon glyphicon-remove"></span>
                             Cancel
                         </button>
                     }
-                </div>
+                    </div>
 
                 <div class="modal-footer">
                     <p>New user<a href="#" data-toggle="modal" data-target="#register"> register here.</a></p>
@@ -120,7 +123,8 @@
     </div>
 
 
-    <!--------------------------------Register Modal content----------------->
+
+    <!--------------------------------Register Modal content---------------- -->
     <div class="modal fade" id="register" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -132,59 +136,159 @@
                 <div class="modal-body">
                     @using (Html.BeginForm("Register", "Home", FormMethod.Post, htmlAttributes: new { id = "SignUpform" }))
                     {
-
                         <div class="form-group">
                             <label for="name"><span class="glyphicon glyphicon-user"></span>Name<span style="color:red">*</span></label>
-                            @Html.EditorFor(modal => modal.Name, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-
+                            <input type="text" class="form-control" id="Name" name="Name" placeholder="Name">
                         </div>
                         <div class="form-group">
-                            <label for="email"><span class="glyphicon glyphicon-envelope"></span>Email<span style="color:red">*</span></label>
-                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            <label for="email"><span class="glyphicon glyphicon-user"></span>Email<span style="color:red">*</span></label>
+                            <input type="email" class="form-control" id="Email" placeholder="Email">
                         </div>
                         <div class="form-group">
                             <label for="password"><span class="glyphicon glyphicon-lock"></span>Password<span style="color:red">*</span></label>
-                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", @Type = "Password" })
+                            <input type="password" class="form-control" id="Password" name="Password" placeholder="Password">
                         </div>
                         <div class="form-group">
-                            <label for="number"><span class="glyphicon glyphicon-phone"></span>Mobile Number<span style="color:red">*</span></label>
-                            @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger", @Type = "Number" })
+                            <label for="number"><span class="glyphicon glyphicon-lock"></span>Mobile Number<span style="color:red">*</span></label>
+                            <input type="number" class="form-control" id="MobileNumber" name="MobileNumber" placeholder="Mobile number">
                         </div>
                         <div class="form-group">
-                            <label for="radio"><span class="fa fa-mars"></span>Gender<span style="color:red">*</span></label>
+                            <label for="radio"><span class="glyphicon glyphicon-user"></span>Gender<span style="color:red">*</span></label>
                             <br />
-                            <input type="radio" name="gender" id="male" value="Male"> Male
-                            <input type="radio" class="float-left" id="female" name="gender" value="Female"> Female<br>
+                            <input type="radio" name="Gender" id="Male" value="Male"> Male<br>
+                            <input type="radio" name="Gender" id="Female" value="Female"> Female<br>
                         </div>
                         <div class="form-group">
-                            <label for="date"><span class="fa fa-child"></span>Date of Birth<span style="color:red">*</span></label>
-                            @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "Date form-control", @Type = "Date" } })
-                            @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                            <label for="number"><span class="glyphicon glyphicon-lock"></span>Age<span style="color:red">*</span></label>
+                            <input type="number" class="form-control" id="DateOfBirth" name="DateOfBirth" placeholder="Age">
                         </div>
                         <div class="form-group">
-                            <label for="address"><span class="fa fa-address-book"></span>Address<span style="color:red">*</span></label>
-                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            <label for="address"><span class="glyphicon glyphicon-user"></span>Address<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="Address" name="Address" placeholder="Address">
                         </div>
 
-                        <button type="submit" id="submit" class="btn btn-success">
+                        <button type="submit" id="Submit" class="btn btn-success">
                             <span class="glyphicon glyphicon-ok"></span>
                             Register
                         </button>
-                        <button type="reset" id="cancel" class="btn btn-danger btn-default" data-dismiss="modal">
+                        <button type="reset" id="Cancel" class="btn btn-danger btn-default" data-dismiss="modal">
                             <span class="glyphicon glyphicon-remove"></span>
                             Cancel
                         </button>
-
                     }
                 </div>
             </div>
         </div>
     </div>
+
+
+    <!-------------------Login Modal content----------------
+    <div class="modal fade" id="loginModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4><span class="glyphicon glyphicon-pencil"></span>Login</h4>
+                </div>
+
+                <div class="modal-body">--->
+    @* @using (Html.BeginForm("Authorize", "Home", FormMethod.Post))
+        {*@
+    <!--<div class="form-group">
+            <label for="mobileNumber"><span class="glyphicon glyphicon-user"></span>Mobile Number<span style="color:red">*</span></label>
+            @*  @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })*@
+            @* @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })*@
+        </div>
+        <div class="form-group">
+            <label for="password"><span class="glyphicon glyphicon-lock"></span>Password<span style="color:red">*</span></label>
+            @* @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })*@
+            @* @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })*@
+        </div>
+
+        <button type="submit" id="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-ok"></span>
+            Login
+        </button>
+        <button type="reset" id="cancel" class="btn btn-danger btn-default" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove"></span>
+            Cancel
+        </button>
+    }
+    </div>
+
+    <div class="modal-footer">
+        <p>New user<a href="#" data-toggle="modal" data-target="#register"> register here.</a></p>
+    </div>
+    </div>
+    </div>
+    </div>-->
+    <!--------------------------------Register Modal content-----------
+    <div class="modal fade" id="register" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4><span class="glyphicon glyphicon-pencil"></span>Register</h4>
+                </div>
+
+                <div class="modal-body">------>
+    @*  @using (Html.BeginForm("Register", "Home", FormMethod.Post, htmlAttributes: new { id = "SignUpform" }))
+        {*@
+
+    <!-- <div class="form-group">
+         <label for="name"><span class="glyphicon glyphicon-user"></span>Name<span style="color:red">*</span></label>
+         @* @Html.EditorFor(modal => modal.Name, new { htmlAttributes = new { @class = "form-control" } })*@
+         @* @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })*@
+
+     </div>
+     <div class="form-group">
+         <label for="email"><span class="glyphicon glyphicon-envelope"></span>Email<span style="color:red">*</span></label>
+         @*  @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })*@
+         @* @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })*@
+     </div>
+     <div class="form-group">
+         <label for="password"><span class="glyphicon glyphicon-lock"></span>Password<span style="color:red">*</span></label>
+         @*  @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })*@
+         @*@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", @Type = "Password" })*@
+     </div>
+     <div class="form-group">
+         <label for="number"><span class="glyphicon glyphicon-phone"></span>Mobile Number<span style="color:red">*</span></label>
+         @* @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" } })*@
+         @* @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger", @Type = "Number" })*@
+     </div>
+     <div class="form-group">
+         <label for="radio"><span class="fa fa-mars"></span>Gender<span style="color:red">*</span></label>
+         <br />
+         <input type="radio" name="gender" id="male" value="Male"> Male
+         <input type="radio" class="float-left" id="female" name="gender" value="Female"> Female<br>
+     </div>
+     <div class="form-group">
+         <label for="date"><span class="fa fa-child"></span>Date of Birth<span style="color:red">*</span></label>
+         @* @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "Date form-control", @Type = "Date" } })*@
+         @*  @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })*@
+     </div>
+     <div class="form-group">
+         <label for="address"><span class="fa fa-address-book"></span>Address<span style="color:red">*</span></label>
+         @*  @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })*@
+         @*  @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })*@
+     </div>
+
+     <button type="submit" id="submit" class="btn btn-success">
+         <span class="glyphicon glyphicon-ok"></span>
+         Register
+     </button>
+     <button type="reset" id="cancel" class="btn btn-danger btn-default" data-dismiss="modal">
+         <span class="glyphicon glyphicon-remove"></span>
+         Cancel
+     </button>
+
+     }
+     </div>
+     </div>
+     </div>
+     </div>
+        -->
+
 
 
     <div>

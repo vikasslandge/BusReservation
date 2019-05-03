@@ -59,6 +59,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -136,6 +137,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Connected Services\ClientServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -171,6 +177,43 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Connected Services\ClientServiceReference\BusReservation.ClientServiceReference.AddPassangerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClientServiceReference\BusReservation.ClientServiceReference.GetBookingStatusesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClientServiceReference\BusReservation.ClientServiceReference.GetBookingStatus_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClientServiceReference\BusReservation.ClientServiceReference.GetCityDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClientServiceReference\BusReservation.ClientServiceReference.GetCityDetails_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClientServiceReference\BusReservation.ClientServiceReference.GetPassangerDetails_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClientServiceReference\BusReservation.ClientServiceReference.GetPassengerDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClientServiceReference\BusReservation.ClientServiceReference.GetRouteDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClientServiceReference\BusReservation.ClientServiceReference.GetRouteDetails_Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClientServiceReference\BusReservation.ClientServiceReference.HelloWorldResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ClientServiceReference\ClientWebService.disco" />
+    <None Include="Connected Services\ClientServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\ClientServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\ClientServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -191,6 +234,7 @@
     </Content>
     <Content Include="MyFiles\Images\banner.jpg" />
     <Content Include="MyFiles\Images\book.png" />
+    <Content Include="MyFiles\Images\bus-icon-12989.png" />
     <Content Include="MyFiles\Images\buslogo.jpg" />
     <Content Include="MyFiles\Images\buslogo.png" />
     <Content Include="MyFiles\CSS\bootstrap-grid.css" />
@@ -214,12 +258,17 @@
     <Content Include="Models\BusModel.edmx.diagram">
       <DependentUpon>BusModel.edmx</DependentUpon>
     </Content>
+    <None Include="Connected Services\ClientServiceReference\ClientWebService.wsdl" />
     <None Include="MyFiles\JavaScript\jquery-1.10.2-vsdoc.js" />
     <Content Include="MyFiles\Images\door.jpg" />
     <Content Include="MyFiles\Images\fb.jpge.png" />
     <Content Include="MyFiles\Images\google.png" />
     <Content Include="MyFiles\Images\insta.png" />
+    <Content Include="MyFiles\Images\logo.png" />
     <Content Include="MyFiles\Images\offer-timer.jpg" />
+    <Content Include="MyFiles\Images\banner.jpeg" />
+    <Content Include="MyFiles\Images\pexels-photo-221284.jpeg" />
+    <Content Include="MyFiles\Images\pexels-photo-388304.jpeg" />
     <Content Include="MyFiles\Images\seatUnbook.png" />
     <Content Include="MyFiles\Images\sheild.png" />
     <Content Include="MyFiles\Images\steering.png" />
@@ -317,6 +366,7 @@
     <Content Include="Views\Shared\_EditOffer.cshtml" />
     <Content Include="Views\Home\BusList.cshtml" />
     <Content Include="Views\Home\SelectSeat.cshtml" />
+    <Content Include="Views\Home\SearchList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -332,6 +382,12 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ClientServiceReference\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
