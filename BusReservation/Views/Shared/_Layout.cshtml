@@ -35,7 +35,6 @@
 
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav ">
-                    <li><a href="#busTicket">Bus Tickets</a></li>
                     <li><a href="#busHire">Bus Hire</a></li>
                     <li><a href="#offers">Special Offers</a></li>
                 </ul>
@@ -45,7 +44,6 @@
                         <a href="#menu" data-toggle="dropdown" class="dropdown-toggle">Manage Booking<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Cancel", "Cancel", "Home")</li>
-                            <li>@Html.ActionLink("Reschedule", "Reschedule", "Home")</li>
                             <li>@Html.ActionLink("Print", "Print", "Home")</li>
                             <li>@Html.ActionLink("Feedback", "Feedback", "Home")</li>
                         </ul>
@@ -146,7 +144,7 @@
                         <div class="form-group">
                             <label for="text"><span class="glyphicon glyphicon-user"></span>Email<span style="color:red">*</span></label>
                             <input type="text" class="form-control" id="Email" name="Email" placeholder="Email">
-                            @Html.ValidationMessage("Email", "Email is required", new { @class = "text-danger" })
+                            @Html.ValidationMessage("Email", "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <label for="password"><span class="glyphicon glyphicon-lock"></span>Password<span style="color:red">*</span></label>

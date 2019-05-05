@@ -738,10 +738,10 @@ namespace BusReservation.ClientServiceReference {
         System.Threading.Tasks.Task<bool> BookTicketAsync(int seatNo, int busId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddTicketDetails", ReplyAction="*")]
-        bool AddTicketDetails(int routeId, int totalNumberOfSeats);
+        bool AddTicketDetails(int routeId, int totalNumberOfSeats, double price);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddTicketDetails", ReplyAction="*")]
-        System.Threading.Tasks.Task<bool> AddTicketDetailsAsync(int routeId, int totalNumberOfSeats);
+        System.Threading.Tasks.Task<bool> AddTicketDetailsAsync(int routeId, int totalNumberOfSeats, double price);
         
         // CODEGEN: Generating message contract since element name name from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddPassanger", ReplyAction="*")]
@@ -1386,12 +1386,12 @@ namespace BusReservation.ClientServiceReference {
             return base.Channel.BookTicketAsync(seatNo, busId);
         }
         
-        public bool AddTicketDetails(int routeId, int totalNumberOfSeats) {
-            return base.Channel.AddTicketDetails(routeId, totalNumberOfSeats);
+        public bool AddTicketDetails(int routeId, int totalNumberOfSeats, double price) {
+            return base.Channel.AddTicketDetails(routeId, totalNumberOfSeats, price);
         }
         
-        public System.Threading.Tasks.Task<bool> AddTicketDetailsAsync(int routeId, int totalNumberOfSeats) {
-            return base.Channel.AddTicketDetailsAsync(routeId, totalNumberOfSeats);
+        public System.Threading.Tasks.Task<bool> AddTicketDetailsAsync(int routeId, int totalNumberOfSeats, double price) {
+            return base.Channel.AddTicketDetailsAsync(routeId, totalNumberOfSeats, price);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

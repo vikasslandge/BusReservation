@@ -3,6 +3,38 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .time {
+        display: inline-block;
+        line-height: 1;
+        padding: 10px 22px 0;
+        font-weight: 500;
+        font-size: 25px;
+        color: #fff;
+    }
+
+    .mainbg {
+        background-attachment: fixed;
+        /*background-image: url('../Images/pexels-photo-1260437.jpeg');
+    background-image: url('../Images/pexels-photo-221284.jpeg');*/
+        background-image: url('../../MyFiles/Images/pexels-photo-388304.jpeg');
+        height: 500px;
+        margin: 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 0;
+        background-position: center;
+    }
+
+    .discount-offer {
+        padding: 120px 0;
+        position: relative;
+        background: no-repeat center fixed;
+        background-size: cover;
+        background-image: url('../../MyFiles/Images/banner.jpeg');
+        z-index: 1;
+    }
+</style>
 
 <script>
     //source-destination cityName validation
@@ -10,7 +42,10 @@
         var $dropdown1 = $("select[name='Source']");
         var $dropdown2 = $("select[name='Destination']");
 
+        $("#destination").prop("disabled", true);
+
         $dropdown1.change(function () {
+            $("#destination").prop("disabled", false)
             $dropdown2.find('option').prop("disabled", false);
 
             var selectedItem = $(this).val();
@@ -19,6 +54,34 @@
             }
         });
     });
+
+    // Set the date we're counting down to
+    var countDownDate = new Date("may 10, 2019 23:59:59").getTime();
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+        // Get todays date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        document.getElementById("timer").innerHTML = days + " days : " + hours + " hours : "
+            + minutes + " minutes : " + seconds + " seconds  ";
+
+        // If the count down is over, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer").innerHTML = "EXPIRED";
+        }
+    }, 1000);
 
 </script>
 
@@ -38,12 +101,12 @@
                 @Html.DropDownList("Source", (IEnumerable<SelectListItem>)ViewBag.Source, "Source", new { @class = "form-control" })
             </div>
             <div class="col-md-3">
-                @Html.DropDownList("Destination", (IEnumerable<SelectListItem>)ViewBag.Destination, "Destination", new { @class = "form-control" })
+                @Html.DropDownList("Destination", (IEnumerable<SelectListItem>)ViewBag.Destination, "Destination", new { @class = "form-control", id = "destination" })
             </div>
             <div class="col-md-3">
                 @*<input type="date" id="DateOfJourney" name="departureDate" class="form-control" data-toggle="datepicker" placeholder="MM-DD-YYYY">*@
                 @Html.EditorFor(model => model.DateOfJourney, new { htmlAttributes = new { @class = "datepicker.now form-control", type = "date" } })
-               @* <input placeholder="Journey Date" class="form-control" type="date" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">*@
+                @* <input placeholder="Journey Date" class="form-control" type="date" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">*@
                 @Html.ValidationMessageFor(model => model.DateOfJourney, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-3">
@@ -94,18 +157,11 @@
                 <div class="dicount-offer-content text-center">
                     <h2>Join with us within 10 May, 2019 and get upto 20% Discount</h2>
                     <div class="campaign-timer">
-                        <div id="timer">
-                            <div class="time time-after" id="days"><span class="camp">Days</span></div>
-                            <div class="time time-after" id="hours"><span class="camp">Hour</span></div>
-                            <div class="time time-after" id="minutes"><span class="camp">Minute</span></div>
-                            <div class="time" id="seconds"><span class="camp">Second</span></div>
+                        <div id="timer" class=" time">
+
                         </div>
                     </div>
-                    <div class="about-btn">
-                        <p class="about-view btn-danger form-control discount-offer-btn">
-                            Register now
-                        </p>
-                    </div>
+
                 </div>
             </div>
         </div>

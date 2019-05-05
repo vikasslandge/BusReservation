@@ -36,18 +36,6 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
 }
-.mainbg {
-    background-attachment: fixed;
-    background-image: url("../Images/banner.jpg");
-    /*background-image: url('../Images/pexels-photo-1260437.jpeg');
-    background-image: url('../Images/pexels-photo-221284.jpeg');*/
-    /*background-image: url("../Images/banner.jpeg");*/
-    height: 500px;
-    margin: 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 0;
-}
 
 .infohead {
     position: absolute;
@@ -110,13 +98,7 @@ body {
 
 
 /*offer css*/
-.discount-offer {
-    padding: 120px 0;
-    position: relative;
-    background: url(../Images/offer-timer.jpg) no-repeat center fixed;
-    background-size: cover;
-    z-index: 1;
-}
+
 .dicount-offer-content h2 {
     color: #fff;
     font-size: 30px;
@@ -150,36 +132,13 @@ body {
     padding: 10px 0;
 }
 
-.time-after {
-    position: relative;
-}
+ 
 
-    .time-after:after {
-        position: absolute;
-        content: ':';
-        top: 10px;
-        right: -8px;
-    }
-
-.time {
-    display: inline-block;
-    line-height: 1;
-    padding: 10px 22px 0;
-    font-weight: 500;
-    font-size: 48px;
-    color: #fff;
-}
-.about-view.discount-offer-btn {
-    color: white;
-    border:none;
-    max-width: 160px;
-    margin: 0 auto;
-}
 /*Cancellation reschedule and print*/
 .tinInput {
     width: 35%;
     display: inline-block;
-    float: left;
+    /*float: left;*/
     margin-left:70px
 }
 
@@ -220,7 +179,7 @@ body {
 
 .emailInput {
     display: inline-block;
-    float: left;
+    /*float: left;*/
     margin-left: -65px;
 }
 
@@ -317,5 +276,5 @@ label.star:before {
     font-family: FontAwesome;
 }
 
-@import url(http://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400);
+
 

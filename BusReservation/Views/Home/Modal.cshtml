@@ -1,16 +1,16 @@
 ﻿@model BusReservation.ClientServiceReference.GetPassangerDetails_Result
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Modal";
+    ViewBag.Title = "Modal";
 }
 <style>
 
 
     .modal-body {
-        padding:0px 200px;
-        width:95%;
-        margin-left:30px;
+        padding: 0px 200px;
+        width: 95%;
+        margin-left: 30px;
     }
     /* ----- MODAL STYLE ----- */
     .modal-content {
@@ -21,9 +21,11 @@
     .modal-header {
         border-bottom-color: #EEEEEE;
         background-color: #FAFAFA;
+        text-align: center;
+        padding-top: 30px;
     }
 
-    .form-control {
+    .forminput {
         display: block;
         width: 40%;
         height: 34px;
@@ -40,7 +42,7 @@
 
     .labelTitle {
         margin-left: 150px;
-        font-size:15px;
+        font-size: 15px;
     }
 </style>
 
@@ -50,13 +52,12 @@
     var seatList = seatdata.Split(',').ToList();
     ViewBag.seatList = seatList;
     int count = 0;
-    int price =Convert.ToInt32(ViewBag.price);
+    int price = Convert.ToInt32(ViewBag.price);
 }
 
 
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="myModalLabel2">Passenger Details</h4>
+    <h3 class="modal-title" id="myModalLabel2">Passenger Details</h3>
 </div>
 
 
@@ -78,68 +79,60 @@
                 <div class="form-group">
                     <label for="name" class="labelTitle">Name<span style="color:red">*</span></label>
                     @*<input type="text" class="formcontrol" id="Name" name="Name" placeholder="Name">*@
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "forminput" } })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="row">
+
+                    <div class="col-sm-5">
+
+                        <label for="number" class="labelTitle">Age<span style="color:red">*</span></label>
+                        @*<input type="number" class="formcontrol" id="Age" name="Age" placeholder="Age">*@
+                        @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = " forminput" } })
+                        @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+
+                    </div>
                     <div class="col-sm-5">
 
                         <label for="radio" class="labelTitle">Gender<span style="color:red">*</span></label>
                         <br />
                         <div class="labelTitle">
-                            <input type="radio" name="Gender" style="margin-left:25px" id="male" value="Male"> Male
-                            <input type="radio" id="female" name="Gender" value="Female"> Female<br>
+                            <input type="radio" name=@count style="margin-left:25px" id="male" value="Male"> Male
+                            <input type="radio" id="female" name=@count value="Female"> Female<br>
                         </div>
-                    </div>
-                    <div class="col-sm-5">
-
-                        <label for="number" class="labelTitle">Age<span style="color:red">*</span></label>
-                        @*<input type="number" class="formcontrol" id="Age" name="Age" placeholder="Age">*@
-                        @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
-
                     </div>
                     <br />
                 </div>
             </div>
-         
+
         }
 
         { ViewBag.count = count; }
-<input class="hide" type="text" id="count" name="count"  />   
-            <div>
-                <br />
-                <h4><span class="glyphicon glyphicon-phone-alt labelTitle"></span> Contact Details</h4>
+        <input class="hide" type="text" id="count" name="count" />
+        <div style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);height:170px;margin:50px;padding-bottom:20px">
+            <br />
+            <h4><span class="glyphicon glyphicon-phone-alt labelTitle"></span> Contact Details</h4>
 
-                <label for="number" class="labelTitle">Mobile Number<span style="color:red">*</span></label>
-                @*<input type="number" class="formcontrol" id="Phone" name="Phone" placeholder="Mobile number">*@
-                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            <label for="number" class="labelTitle">Mobile Number<span style="color:red">*</span></label>
+            @*<input type="number" class="formcontrol" id="Phone" name="Phone" placeholder="Mobile number">*@
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "forminput" } })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
 
-            </div>
+        </div>
         <br />
         <hr />
-        <div class="row">
-            <div class="col-lg-8">
-                <b class="labelTitle">Total Amount:INR</b>
-            </div>
-            <div class="col-md-4 float-right">
-                @*@Html.ActionLink("Proceed to pay", "Passenger", "", new { @class = "btn btn-danger  text-uppercase" })*@
-                <button type="submit" value="Proceed to pay" class="btn btn-danger text-uppercase">Proceed to pay</button>
-            </div>
 
-
-        </div>
-        <div class="row" style="position:fixed;width:100%">
-            <div class="col-lg-4">
-              <b class="labelTitle">Total:INR @price</b>
+        <div class="row" style="width:100%;">
+            <div class="col-md-5" style="margin-left: 170px;margin-right:50px">
+                <b>Total Amount: INR @price</b>
             </div>
             <div class="col-md-4 float-right">
                 @*@Html.ActionLink("Proceed to pay", "Passenger", "", new { @class = "btn btn-danger  text-uppercase" })*@
                 <button type="submit" value="Proceed to pay" class="btn btn-danger text-uppercase">Proceed to pay</button>
             </div>
         </div>
+
     }
 </div>
 
