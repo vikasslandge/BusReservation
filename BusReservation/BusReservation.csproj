@@ -241,11 +241,8 @@
       <DependentUpon>BusModel.edmx</DependentUpon>
       <LastGenOutput>BusModel.cs</LastGenOutput>
     </Content>
-    <Content Include="MyFiles\Images\banner.jpg" />
     <Content Include="MyFiles\Images\book.png" />
     <Content Include="MyFiles\Images\bus-icon-12989.png" />
-    <Content Include="MyFiles\Images\buslogo.jpg" />
-    <Content Include="MyFiles\Images\buslogo.png" />
     <Content Include="MyFiles\CSS\bootstrap-grid.css" />
     <Content Include="MyFiles\CSS\bootstrap-grid.min.css" />
     <Content Include="MyFiles\CSS\bootstrap-reboot.css" />
@@ -270,11 +267,9 @@
     <None Include="Connected Services\ClientServiceReference\ClientWebService.wsdl" />
     <None Include="MyFiles\JavaScript\jquery-1.10.2-vsdoc.js" />
     <Content Include="MyFiles\Images\door.jpg" />
-    <Content Include="MyFiles\Images\fb.jpge.png" />
+    <Content Include="MyFiles\Images\facebook.png" />
     <Content Include="MyFiles\Images\google.png" />
-    <Content Include="MyFiles\Images\insta.png" />
     <Content Include="MyFiles\Images\logo.png" />
-    <Content Include="MyFiles\Images\offer-timer.jpg" />
     <Content Include="MyFiles\Images\banner.jpeg" />
     <Content Include="MyFiles\Images\pexels-photo-221284.jpeg" />
     <Content Include="MyFiles\Images\pexels-photo-388304.jpeg" />
@@ -351,7 +346,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -380,6 +374,7 @@
     <Content Include="Views\Home\SearchList.cshtml" />
     <Content Include="Views\Home\Modal.cshtml" />
     <Content Include="Views\Home\Passenger.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
