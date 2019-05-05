@@ -1,6 +1,7 @@
 ﻿@*@model BusReservation.ClientServiceReference.GetRouteDetailById_Result*@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 @{
     ViewBag.Title = "SelectSeat";
@@ -84,69 +85,7 @@
         margin: 0px;
     }
 
-
-    /*************Modal style**********/
-    .modal.right .modal-dialog {
-        position: fixed;
-        margin: auto;
-        width: 50%;
-        height: 100%;
-        -webkit-transform: translate3d(0%, 0, 0);
-        -ms-transform: translate3d(0%, 0, 0);
-        -o-transform: translate3d(0%, 0, 0);
-        transform: translate3d(0%, 0, 0);
-    }
-
-    .modal.right .modal-content {
-        height: 100%;
-        overflow-y: auto;
-    }
-
-
-    .modal.right .modal-body {
-        padding: 15px 15px 80px;
-    }
-
-    /*Right*/
-    .modal.right.fade .modal-dialog {
-        right: -320px;
-        -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
-        -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
-        -o-transition: opacity 0.3s linear, right 0.3s ease-out;
-        transition: opacity 0.3s linear, right 0.3s ease-out;
-    }
-
-    .modal.right.fade.in .modal-dialog {
-        right: 0;
-    }
-
-    /* ----- MODAL STYLE ----- */
-    .modal-content {
-        border-radius: 0;
-        border: none;
-    }
-
-    .modal-header {
-        border-bottom-color: #EEEEEE;
-        background-color: #FAFAFA;
-    }
-    .formcontrol {
-        display: block;
-        width: 80%;
-        height: 34px;
-        padding: 6px 12px;
-        font-size: 14px;
-        line-height: 1.42857143;
-        color: #555;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-left:30px;
-    }
-    .labelTitle {
-        margin-left: 30px;
-    }
+    
 </style>
 
 <div class=" row">
@@ -343,6 +282,10 @@
         <br>
 
     </div>
+
+
+    @using (Html.BeginForm("SelectSeat", "Home",FormMethod.Post, new { id = "selectedDetails" }))
+    {
     <div class="col-sm-6 seatSelected" align="left" id="dataRoute">
         <p class="heading" style="margin-top:20px;">Boarding & Dropping</p>
 
@@ -382,97 +325,32 @@
                 <p id="count"> </p>
             </div>
         </div>
+        <input type="text" id="pp" class="hide" name="pp" />
+        <input type="text" id="qq" name="qq" />
         <div align="center">
-            <button onclick="updateTextArea()" type="submit" data-toggle="modal" data-target="#passengerModal" value="Book Ticket" class="btn btn-danger" style="margin-top:20px">BOOK TICKET</button>
+            @*@Html.ActionLink("BOOK TICKET", "Modal", "",
+            new { onclick= "updateTextArea()", id = "bookTicket", type = "submit", data_toggle = "modal" ,data_target = "#passengerModal" ,value = "Book Ticket", @class="btn btn-danger", style="margin-top:20px" })*@
+
+            @*<input onclick="updateTextArea()" id="bookTicket" type="submit" @*data-toggle="modal" data-target="#passengerModal" value="Book Ticket" class="btn btn-danger" style="margin-top:20px">*@
+
+            <br />
+            <input type="submit" value="Book" id="bookTicket" form="selectedDetails" class="btn-danger btn" />
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal right fade" id="passengerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel2">Passenger Details</h4>
-                </div>
-
-                <div class="modal-body">
-                    <h4><span class="fa fa-users labelTitle"></span>Passenger Information</h4>
-
-                    @*@using (Html.BeginForm("Passenger", "Home",FormMethod.Post))
-                    {
-
-                        for (int i=1;i <= ViewBag.seatCount;i++)
-                        {
-                            <div style=" box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);height:200px;">
-                                <br />
-                                <p class="labelTitle">Passenger @i | Seat @ViewBag.seatNumberArray[i]</p>
-                                <br />
-                                <div class="form-group">
-                                    <label for="name" class="labelTitle">Name<span style="color:red">*</span></label>
-                                    <input type="text" class="formcontrol" id="Name" name="Name" placeholder="Name">
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-5">
-
-                                        <label for="radio" class="labelTitle">Gender<span style="color:red">*</span></label>
-                                        <br />
-                                        <div class="labelTitle">
-                                            <input type="radio" name="Gender" id="male" value="Male"> Male
-                                            <input type="radio" id="female" name="Gender" value="Female"> Female<br>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5">
-
-                                        <label for="number" class="labelTitle">Age<span style="color:red">*</span></label>
-                                        <input type="number" class="formcontrol" id="Age" name="Age" placeholder="Age">
-
-                                    </div>
-                                    <br />
-                                </div>
-                            </div>
-                        }
-                            <div>
-                                <br />
-                                <h4><span class="glyphicon glyphicon-phone-alt labelTitle"></span> Contact Details</h4>
-
-                                <label for="number" class="labelTitle">Mobile Number<span style="color:red">*</span></label>
-                                <input type="number" class="formcontrol" id="Phone" name="Phone" placeholder="Mobile number">
-
-                            </div>
-                            <br />
-                            <hr />
-                            <div class="row" style="position:fixed;width:100%">
-                                <div class="col-lg-8">
-                                    <b class="labelTitle">Total Amount:INR @ViewBag.totalPrice</b>
-                                </div>
-                                <div class="col-md-4 float-right">
-                                    @Html.ActionLink("Proceed to pay", "Passenger", "", new { @class = "btn btn-danger  text-uppercase" })
-                                     <button type="submit" value="Proceed to pay" class="btn btn-danger text-uppercase">Proceed to pay</button>
-                                </div>
-                            </div>
-                        }*@
-                    </div>
-            </div>
-        </div>
-    </div>
-
+    }
+    
 </div>
 
 
 
 
-
-
 <script>
-    function updateTextArea() {
+    var allNumberVals = [];
+    var allSeatsVals = [];
+    
+    $("#selectedDetails").submit(function () {
 
         if ($("input:checked").length > 0 && $("input:checked").length < 4) {
-
-            var allNumberVals = [];
-            var allSeatsVals = [];
-
             //counting checked check boxes for seat
             var inputElems = document.getElementsByTagName("input"),
                 count = 0;
@@ -482,7 +360,6 @@
                 }
             }
             //Storing in Array
-
             allNumberVals.push(count);
             $('#seatsBlock :checked').each(function () {
                 allSeatsVals.push($(this).val());
@@ -491,13 +368,23 @@
         else {
             document.getElementById("error").innerHTML = "Please select atleast 1 seat and maximum 3 seats.";
         }
-    }
+        var fare = count * @ViewBag.price;
+        document.getElementById("pp").value = allSeatsVals;
+        document.getElementById("qq").value = fare;
+
+        allSeatsVals = [];
+
+    });
 
     $(":checkbox").click(function () {
         var seatno = [];
+
+   
+
         $('#seatsBlock :checked').each(function () {
             seatno.push($(this).val());
         });
+
         document.getElementById('seatno').innerHTML = seatno;
 
         var inputElems = document.getElementsByTagName("input"),
@@ -509,7 +396,9 @@
         }
 
         var fare = count * @ViewBag.price;
+
         document.getElementById('count').innerHTML = fare;
+    
     });
 
     $(":checkbox").click(function () {

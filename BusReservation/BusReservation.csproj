@@ -374,6 +374,7 @@
     <Content Include="Views\Home\BusList.cshtml" />
     <Content Include="Views\Home\SelectSeat.cshtml" />
     <Content Include="Views\Home\SearchList.cshtml" />
+    <Content Include="Views\Home\Modal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -58,6 +58,42 @@ namespace BusReservation.Controllers
             
             return View();
         }
+        [HttpPost]
+        public ActionResult SelectSeat(FormCollection collection)
+        {
+            ViewBag.arraySeat = collection["pp"];
+            ViewBag.price = collection["qq"];
+            return View("Modal");
+        }
+        [HttpPost]
+        public ActionResult Passenger(FormCollection collection)
+        {
+            int count = Convert.ToInt32(collection["count"]);
+            for (int i=1;i<=count;i++) {
+                var result = soapClient.AddPassanger(collection["Name"], Convert.ToInt32(collection["Age"]), collection["Gender"], collection["Phone"],Convert.ToInt32(ViewBag.seatList[i]));
+            }
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         [HttpPost]
         public ActionResult Register(UserDetails user, FormCollection collection)
@@ -78,6 +114,7 @@ namespace BusReservation.Controllers
 
             return RedirectToAction("Index");
         }
+       
 
         [HttpPost]
         public ActionResult Authorize(UserDetails login,FormCollection collection)
@@ -122,12 +159,7 @@ namespace BusReservation.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
-        public ActionResult Passenger(FormCollection collection)
-        {
-            var result = soapClient.AddPassanger(collection["Name"], Convert.ToInt32(collection["Age"]), collection["Gender"], collection["Phone"], Convert.ToInt32(collection["SeatNo"]));
-            return View();
-        }
+       
 
         public ActionResult Cancel()
         {
@@ -157,8 +189,5 @@ namespace BusReservation.Controllers
             int id = Convert.ToInt32(Session["UserId"]);
             return View();
         }
-
-       
-
     }
 }
