@@ -3,16 +3,46 @@
 <script src="~/Scripts/jquery.validate.js"></script>
 @model IEnumerable<BusReservation.Models.ProviderDetails>
 
-<div id="edit"></div>
-<table class="table">
-    <tr>
-        <th>
+<br />
+<br />
+<style>
+    .tab {
+        width: 770px;
+        margin-bottom: 20px;
+        background-color: transparent;
+        border-spacing: 0;
+        border-collapse: collapse;
+        margin-left:160px;
+    }
+    }
+    .tableth {
+        width: 120px;
+        background-color: #d84e55;
+        color: white;
+    }
+    .editform {
+        width: 770px;
+        margin-bottom: 20px;
+        background-color: transparent;
+        border-spacing: 0;
+        border-collapse: collapse;
+        margin-left: 160px;
+        margin-top:20px;
+    }
+</style>
+
+<div class="editform" id="edit"></div>
+<br /><br />
+<table class="table tab">
+    <tr class="tableth">
+        <th bgcolor="#d84e55"style="color:white">
             <span class=" glyphicon glyphicon-flag"></span>Organization Name
         </th>
-        <th>
+        <th bgcolor="#d84e55" style="color:white">
             <span class="glyphicon glyphicon-phone"></span>Mobile Number
         </th>
-        <th></th>
+        <th bgcolor="#d84e55" style="color:white"></th>
+        <th bgcolor="#d84e55" style="color:white"></th>
     </tr>
 
     @foreach (var item in Model)
@@ -25,13 +55,14 @@
                 @Html.DisplayFor(modelItem => item.Contact)
             </td>
             <td>
-                @Ajax.ActionLink("Edit", "Edit", new { id = item.ProviderId },new AjaxOptions {
+                @Ajax.ActionLink("Update", "Edit", new { id = item.ProviderId },new AjaxOptions {
                HttpMethod = "GET",
                InsertionMode = InsertionMode.Replace,
                UpdateTargetId = "edit"
-           })
-                |
-                @Html.ActionLink("Delete", "ProviderDelete", new { id = item.ProviderId })
+           },new { @class="btn btn-success"})
+                </td>
+            <td>
+                @Html.ActionLink("Remove", "ProviderDelete", new { id = item.ProviderId },new { @class="btn btn-danger"})
             </td>
         </tr>
     }

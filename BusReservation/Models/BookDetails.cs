@@ -11,15 +11,20 @@ namespace BusReservation.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    public partial class ProviderDetails
+    
+    public partial class BookDetails
     {
-        public int ProviderId { get; set; }
-
-        [Required(ErrorMessage ="Please enter the  Organisation name")]
-        
-        public string OrganisationName { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BookDetails()
+        {
+            this.HireDetails = new HashSet<HireDetails>();
+        }
+    
+        public int BookId { get; set; }
+        public string Name { get; set; }
         public long Contact { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HireDetails> HireDetails { get; set; }
     }
 }

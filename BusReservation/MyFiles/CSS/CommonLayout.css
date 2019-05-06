@@ -135,20 +135,17 @@ body {
  
 
 /*Cancellation reschedule and print*/
-.tinInput {
-    width: 35%;
-    display: inline-block;
-    /*float: left;*/
-    margin-left:70px
-}
+    .tinInput{
+        display:inline-block;
+    }
 
-.tinheader {
-    margin-left: 6em;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #484848;
-    font-size: 1.7rem;
-}
+    .tinheader {
+        margin-left: 6em;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #484848;
+        font-size: 1.7rem;
+    }
 
 .fl {
     float: left

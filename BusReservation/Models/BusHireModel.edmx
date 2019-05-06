@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BusHireModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BookDetails">
+          <Key>
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="BookId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contact" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HireDetails">
+          <Key>
+            <PropertyRef Name="HireId" />
+          </Key>
+          <Property Name="HireId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Capacity" Type="int" Nullable="false" />
+          <Property Name="Source" Type="int" Nullable="false" />
+          <Property Name="Destination" Type="int" Nullable="false" />
+          <Property Name="Return" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_HireDetails_City">
+          <End Role="BookDetails" Type="Self.BookDetails" Multiplicity="1" />
+          <End Role="HireDetails" Type="Self.HireDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookDetails">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="HireDetails">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HireDetails_City1">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="HireDetails" Type="Self.HireDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="HireDetails">
+              <PropertyRef Name="Destination" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HireDetails_City2">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="HireDetails" Type="Self.HireDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="HireDetails">
+              <PropertyRef Name="Source" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BusHireModelStoreContainer">
+          <EntitySet Name="BookDetails" EntityType="Self.BookDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HireDetails" EntityType="Self.HireDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_HireDetails_City" Association="Self.FK_HireDetails_City">
+            <End Role="BookDetails" EntitySet="BookDetails" />
+            <End Role="HireDetails" EntitySet="HireDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HireDetails_City1" Association="Self.FK_HireDetails_City1">
+            <End Role="City" EntitySet="City" />
+            <End Role="HireDetails" EntitySet="HireDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HireDetails_City2" Association="Self.FK_HireDetails_City2">
+            <End Role="City" EntitySet="City" />
+            <End Role="HireDetails" EntitySet="HireDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BusHireModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BookDetails">
+          <Key>
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="BookId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contact" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="HireDetails" Relationship="Self.FK_HireDetails_City" FromRole="BookDetails" ToRole="HireDetails" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="HireDetails" Relationship="Self.FK_HireDetails_City1" FromRole="City" ToRole="HireDetails" />
+          <NavigationProperty Name="HireDetails1" Relationship="Self.FK_HireDetails_City2" FromRole="City" ToRole="HireDetails" />
+        </EntityType>
+        <EntityType Name="HireDetails">
+          <Key>
+            <PropertyRef Name="HireId" />
+          </Key>
+          <Property Name="HireId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Capacity" Type="Int32" Nullable="false" />
+          <Property Name="Source" Type="Int32" Nullable="false" />
+          <Property Name="Destination" Type="Int32" Nullable="false" />
+          <Property Name="Return" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BookDetails" Relationship="Self.FK_HireDetails_City" FromRole="HireDetails" ToRole="BookDetails" />
+          <NavigationProperty Name="City" Relationship="Self.FK_HireDetails_City1" FromRole="HireDetails" ToRole="City" />
+          <NavigationProperty Name="City1" Relationship="Self.FK_HireDetails_City2" FromRole="HireDetails" ToRole="City" />
+        </EntityType>
+        <Association Name="FK_HireDetails_City">
+          <End Role="BookDetails" Type="Self.BookDetails" Multiplicity="1" />
+          <End Role="HireDetails" Type="Self.HireDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookDetails">
+              <PropertyRef Name="BookId" />
+            </Principal>
+            <Dependent Role="HireDetails">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HireDetails_City1">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="HireDetails" Type="Self.HireDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="HireDetails">
+              <PropertyRef Name="Destination" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HireDetails_City2">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="HireDetails" Type="Self.HireDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="HireDetails">
+              <PropertyRef Name="Source" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BusHireEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BookDetails" EntityType="Self.BookDetails" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="HireDetails" EntityType="Self.HireDetails" />
+          <AssociationSet Name="FK_HireDetails_City" Association="Self.FK_HireDetails_City">
+            <End Role="BookDetails" EntitySet="BookDetails" />
+            <End Role="HireDetails" EntitySet="HireDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HireDetails_City1" Association="Self.FK_HireDetails_City1">
+            <End Role="City" EntitySet="City" />
+            <End Role="HireDetails" EntitySet="HireDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HireDetails_City2" Association="Self.FK_HireDetails_City2">
+            <End Role="City" EntitySet="City" />
+            <End Role="HireDetails" EntitySet="HireDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BusHireModelStoreContainer" CdmEntityContainer="BusHireEntities">
+          <EntitySetMapping Name="BookDetails">
+            <EntityTypeMapping TypeName="BusHireModel.BookDetails">
+              <MappingFragment StoreEntitySet="BookDetails">
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="BusHireModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HireDetails">
+            <EntityTypeMapping TypeName="BusHireModel.HireDetails">
+              <MappingFragment StoreEntitySet="HireDetails">
+                <ScalarProperty Name="HireId" ColumnName="HireId" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="Return" ColumnName="Return" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

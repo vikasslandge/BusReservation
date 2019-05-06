@@ -1,0 +1,112 @@
+﻿
+
+@{
+    ViewBag.Title = "Success";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Success</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <style>
+        .flow {
+            font-size: 18px;
+           
+        }
+
+        .firstTick {
+            position: absolute;
+            top: 430px;
+            left: 19%;
+        }
+
+        .secondTick {
+            position: absolute;
+            top: 430px;
+            left: 47%;
+        }
+
+        .continue {
+            position: absolute;
+            top: 430px;
+            left: 76%;
+        }
+
+        .home {
+            transform: translate(50,50);
+            margin-left: 45%;
+        }
+        .leftmarg {
+        margin-left:155px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <br />
+    <br />
+    <h1 align="center">Thank You.</h1>
+    <br />
+    <h2 align="center">Your request has been sent.</h2>
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="row leftmarg container" >
+        <div class="col-lg-4 flow" align="center">
+            <p>ENQUIRY DETAILS</p>
+        </div>
+        <div class="col-lg-4 flow" align="center">
+            <p>REQUEST SENT</p>
+        </div>
+        <div class="col-lg-4 flow" align="center">
+            <p>GETTING QUOTES FROM BUS OPERATORS</p>
+        </div>
+
+    </div>
+
+    <div class="row leftmarg container">
+        <svg height="100" width="1120">
+            <line x1="0" y1="80" x2="1200" y2="80" style="stroke:#979797 ;stroke-width:2;str" />
+        </svg>
+    </div>
+    <div class="firstTick">
+        <img src="~/MyFiles/Images/tick.JPG" style="width:60px;height:60px;border-radius:50%" />
+    </div>
+    <div class="secondTick">
+        <img src="~/MyFiles/Images/tick.JPG" style="width:60px;height:60px;border-radius:50%" />
+    </div>
+    <div class="continue">
+        <img src="~/MyFiles/Images/continue.jpg" style="width:60px;height:60px;border-radius:50%" />
+    </div>
+    <br />
+    <br />
+    <br />
+    <h2 style="color:#d84e55" align="center">We will notify you through email and SMS with the quotations shortly.</h2>
+    <br />
+    <h5 align="center">In case of any query call us at +020 20255000 or email us at pvsbus@gmail.com></h5>
+    <br />
+    <br />
+
+
+    <div class="home container">
+        <a href="@Url.Action("Index","Home")">
+            <img src="~/MyFiles/Images/home.JPG" alt="buslogo" style="width:85px;height:85px;border-radius:50%">
+        </a>
+    </div>
+    <br />
+
+</body>
+</html>
+
+

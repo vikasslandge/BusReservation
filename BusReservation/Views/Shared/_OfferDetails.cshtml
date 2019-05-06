@@ -3,22 +3,54 @@
 <script src="~/Scripts/jquery.validate.js"></script>
 @model IEnumerable<BusReservation.Models.OfferDetails>
 
-<div id="edit"></div>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.OfferCode)
+<style>
+    .tab {
+        width: 800px;
+        margin-bottom: 20px;
+        background-color: transparent;
+        border-spacing: 0;
+        border-collapse: collapse;
+        margin-left: 160px;
+    }
+
+    }
+
+    .tableth {
+        width: 120px;
+        background-color: #d84e55;
+        color: white;
+    }
+
+    .editform {
+        width: 770px;
+        margin-bottom: 20px;
+        background-color: transparent;
+        border-spacing: 0;
+        border-collapse: collapse;
+        margin-left: 160px;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="editform" id="edit"></div>
+<br />
+<br />
+<table class="table tab">
+    <tr class="tableth">
+        <th bgcolor="#d84e55" style="color:white">
+            <span class=" glyphicon glyphicon-gift"></span> Offer Code
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DiscountPercentage)
+        <th bgcolor="#d84e55" style="color:white">
+            <span class=" glyphicon glyphicon-minus-sign"></span> Discount Percentage
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MinAmount)
+        <th bgcolor="#d84e55" style="color:white">
+            <span class=" glyphicon glyphicon-tag"></span> Minimum Amount
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExpiryDate)
+        <th bgcolor="#d84e55" style="color:white">
+            <span class=" glyphicon glyphicon-ban-circle"></span> Expiry Date
         </th>
-        <th></th>
+        <th bgcolor="#d84e55" style="color:white"></th>
+        <th bgcolor="#d84e55" style="color:white"></th>
     </tr>
 
     @foreach (var item in Model)
@@ -37,13 +69,15 @@
                 @Html.DisplayFor(modelItem => item.ExpiryDate)
             </td>
             <td>
-                @Ajax.ActionLink("Edit", "EditOffer", new { id = item.OfferId },new AjaxOptions {
+                @Ajax.ActionLink("Update", "EditOffer", new { id = item.OfferId },new AjaxOptions {
                HttpMethod = "GET",
                InsertionMode = InsertionMode.Replace,
                UpdateTargetId = "edit"
-           }) |
+           }, new { @class = "btn btn-success" })
+                </td>
+            <td>
 
-                @Html.ActionLink("Delete", "DeleteOffer", new { id = item.OfferId })
+                @Html.ActionLink("Remove", "DeleteOffer", new { id = item.OfferId }, new { @class = "btn btn-danger" })
             </td>
         </tr>
     }

@@ -1,39 +1,62 @@
 ﻿<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
 @model BusReservation.Models.ProviderDetails
-
+<script src="~/Content/Validation.js"></script>
 
 <style>
-    .top{
-        margin:30px 60px;
-
+    .formcontainer {
+        margin-top:50px;
+        margin-left:180px;
+        width: 770px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        height:320px;
+    }
+    .labelTitle {
+        margin-left: 150px;
+        font-size: 15px;
+    }
+    .forminput {
+        display: block;
+        width: 60%;
+        height: 34px;
+        padding: 10px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-left: 150px;
     }
 </style>
 
-@using (Html.BeginForm("AddProvider", "Admin",FormMethod.Post))
+@using (Html.BeginForm("AddProvider", "Admin",FormMethod.Post, htmlAttributes: new { onsubmit = "return validateProvider();",@class= "formcontainer" }))
 {
     @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4 class="text-center text-uppercase">Provider Addition</h4>
+ <br />
+    <div>
+        <h2 class="text-center text-uppercase">Add Provider</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            <label for="name"><span class=" glyphicon glyphicon-flag"></span>Organization Name</label>
-            @Html.EditorFor(model => model.OrganisationName, new { htmlAttributes = new { @class = "form-control",id="OrganizationName" } })
+            <label class="labelTitle" for="name"><span class=" glyphicon glyphicon-flag"></span>Organization Name</label>
+            @Html.EditorFor(model => model.OrganisationName, new { htmlAttributes = new { @class = "forminput", id= "OrganizationName" } })
+            <span class="labelTitle"  style="color:red" id="organization_error"></span>
             @Html.ValidationMessageFor(model => model.OrganisationName, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
-            <label for="number"><span class="glyphicon glyphicon-phone"></span>Mobile Number</label>
-            @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control",id="MobileNumber"  } })
+            <label class="labelTitle" for="number"><span class="glyphicon glyphicon-phone"></span>Mobile Number</label>
+            @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "forminput", id = "MobileNumber" } })
+            <span class="labelTitle" style="color:red" id="mobile_error"></span>
             @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-success" />
-            </div>
+            
+                <input type="submit" value="Add Provider" class="btn btn-danger" style="margin-left:300px;width:150px;height:38px" />
+            
         </div>
     </div>
 }

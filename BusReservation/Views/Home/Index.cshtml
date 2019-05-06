@@ -96,7 +96,7 @@
     @using (Html.BeginForm("BusList", "Home", FormMethod.Post,new {onsubmit= "return validateSearch();" }))
     {
 
-        @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken() 
         <div class="row infodata">
             <div class="col-md-3">
                 @Html.DropDownList("Source", (IEnumerable<SelectListItem>)ViewBag.Source, "Source", new { @class = "form-control" , id = "Source" })
@@ -121,7 +121,7 @@
 
 <!---------------------information about company-------------------------->
 
-<div style="margin:30px 180px;width:1000px;height:350px;border:1px solid black">
+<div style="margin:30px 240px;width:1000px;height:350px;border:1px solid black">
 
     <div class="header">
         <div class="img2_Hero col-sm-1"></div>

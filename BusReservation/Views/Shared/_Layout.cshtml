@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Content/Validation.js"></script>
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -35,8 +37,8 @@
 
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav ">
-                    <li><a href="#busHire">Bus Hire</a></li>
-                    <li><a href="#offers">Special Offers</a></li>
+                    <li>@Html.ActionLink("Bus Hire","BusHire","Home")</li>
+                    <li>@Html.ActionLink("Special Offers","Index","Home",new { href= "#offers" })</li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -90,21 +92,23 @@
                 </div>
 
                 <div class="modal-body">
-                    @using (Html.BeginForm("Authorize", "Home", FormMethod.Post, new { onsubmit = "return validateLogin();" }))
+                    @using (Html.BeginForm("Authorize", "Home", FormMethod.Post, new { id = "LoginPage", onsubmit = "return validateLogin();" }))
                     {
 
                         <div class="form-group">
                             <label for="mobilenumber"><span class="glyphicon glyphicon-user"></span>Mobile Number<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" name="MobileNumber" id="MobileNumber" placeholder="Mobile Number">
+                            <input type="text" class="form-control" name="MobileNumber" id="MobileNumber" placeholder="Mobile Number" pattern="[7-9]{1}[0-9]{9}" required>
+                            <span style="color:red" id="mob_error"></span>
                             @Html.ValidationMessage("MobileNumber", "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <label for="password"><span class="glyphicon glyphicon-lock"></span>Password<span style="color:red">*</span></label>
-                            <input type="password" class="form-control" name="Password" id="Password" placeholder="Password">
+                            <input type="password" class="form-control" name="Password" id="Password" placeholder="Password" pattern="((?=.*\d)(?=.*[Aa-Zz])).{4,10}" required>
+                            <span style="color:red" id="password_error"></span>
                             @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
                         </div>
 
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-success" id="submitbtn">
                             <span class="glyphicon glyphicon-ok"></span>
                             Login
                         </button>
@@ -133,43 +137,51 @@
                     <h4><span class="glyphicon glyphicon-pencil"></span>Register</h4>
                 </div>
 
+
                 <div class="modal-body">
-                    @using (Html.BeginForm("Register", "Home", FormMethod.Post, htmlAttributes: new { id = "SignUpform" }))
+                    @using (Html.BeginForm("Register", "Home", FormMethod.Post, htmlAttributes: new { id = "SignUpform", onsubmit = "return validateRegister();" }))
                     {
                         <div class="form-group">
                             <label for="name"><span class="glyphicon glyphicon-user"></span>Name<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="Name" name="Name" placeholder="Name">
+                            <input type="text" class="form-control" id="Name" name="Name" placeholder="Name" pattern="[A-Za-z].{4,10}" required>
+                            <span style="color:red" id="rname_error"></span>
                             @Html.ValidationMessage("Name", "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <label for="text"><span class="glyphicon glyphicon-user"></span>Email<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="Email" name="Email" placeholder="Email">
+                            <input type="text" class="form-control" id="Email" name="Email" placeholder="Email"  required>
+                            <span style="color:red" id="email_error"></span>
                             @Html.ValidationMessage("Email", "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <label for="password"><span class="glyphicon glyphicon-lock"></span>Password<span style="color:red">*</span></label>
-                            <input type="password" class="form-control" id="Password" name="Password" placeholder="Password">
+                            <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" pattern=".{4,10}" required />
+                            <span style="color:red" id="password_error"></span>
                             @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <label for="number"><span class="glyphicon glyphicon-lock"></span>Mobile Number<span style="color:red">*</span></label>
-                            <input type="number" class="form-control" id="MobileNumber" name="MobileNumber" placeholder="Mobile number">
+                            <input type="number" class="form-control" id="MobileNumber" name="MobileNumber" placeholder="Mobile number" pattern="[7-9]{1}[0-9]{9}" required />
+                            <span style="color:red" id="MobileNumber_error"></span>
                             @Html.ValidationMessage("MobileNumber", "", new { @class = "text-danger" })
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="Gender" >
                             <label for="radio"><span class="fa fa-mars"></span>Gender<span style="color:red">*</span></label>
                             <br />
-                            <input type="radio" name="gender" id="male" value="Male"> Male
-                            <input type="radio" class="float-left" id="female" name="gender" value="Female"> Female<br>
+                            <input type="radio" name="gender" id="male" value="Male" required> Male
+                            <input type="radio" class="float-left" id="female" name="gender" value="Female" required> Female<br>
+                            <span style="color:red" id="gender_error"></span>
                         </div>
                         <div class="form-group">
                             <label for="date"><span class="glyphicon glyphicon-lock"></span>DateOfBirth<span style="color:red">*</span></label>
-                            <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" placeholder="DateOfBirth">
+                            <input type="date" class="form-control" id="DateOfBirth" name="DateOfBirth" placeholder="DateOfBirth" required>
+                            <span style="color:red" id="dob_error"></span>
                             @Html.ValidationMessage("DateOfBirth", "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <label for="address"><span class="glyphicon glyphicon-user"></span>Address<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="Address" name="Address" placeholder="Address">
+                            <input type="text" class="form-control" id="Address" name="Address" placeholder="Address" pattern="[A-Za-Z].{4,20}" required>
+                            <span style="color:red" id="address_error"></span>
                             @Html.ValidationMessage("Address", "", new { @class = "text-danger" })
                         </div>
 
@@ -228,6 +240,8 @@
     </div>
     </div>
     </div>-->
+
+
     <!--------------------------------Register Modal content-----------
     <div class="modal fade" id="register" role="dialog">
         <div class="modal-dialog">

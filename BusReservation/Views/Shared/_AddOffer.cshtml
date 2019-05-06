@@ -2,52 +2,86 @@
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Content/Validation.js"></script>
 
+<style>
+    .formcontainer {
+        margin-top: 50px;
+        margin-left: 180px;
+        width: 770px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        height: 460px;
+    }
 
-@using (Html.BeginForm("AddOffer", "Admin", FormMethod.Post))
+    .labelTitle {
+        margin-left: 150px;
+        font-size: 15px;
+    }
+
+    .forminput {
+        display: block;
+        width: 60%;
+        height: 34px;
+        padding: 10px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-left: 150px;
+    }
+</style>
+@using (Html.BeginForm("AddOffer", "Admin", FormMethod.Post, htmlAttributes: new { onsubmit = "return validateOffer();", @class = "formcontainer" }))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>OfferDetails</h4>
+    <br />
+    <div>
+        <h2 class="text-center text-uppercase">Add Offer</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-group">
-            @Html.LabelFor(model => model.OfferCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OfferCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OfferCode, "", new { @class = "text-danger" })
-            </div>
+            <label class="labelTitle" for="name"><span class=" glyphicon glyphicon-gift"></span> Offer Code</label>
+
+            @Html.EditorFor(model => model.OfferCode, new { htmlAttributes = new { @class = "forminput", id = "OfferCode" } })
+            <span class="labelTitle" style="color:red" id="offercode_error"></span>
+            @Html.ValidationMessageFor(model => model.OfferCode, "", new { @class = "text-danger" })
+
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DiscountPercentage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DiscountPercentage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DiscountPercentage, "", new { @class = "text-danger" })
-            </div>
+            <label class="labelTitle" for="name"><span class=" glyphicon glyphicon-minus-sign"></span> Discount Percentage</label>
+
+            @Html.EditorFor(model => model.DiscountPercentage, new { htmlAttributes = new { @class = "forminput" } })
+            <span class="labelTitle" style="color:red" id="discount_error"></span>
+            @Html.ValidationMessageFor(model => model.DiscountPercentage, "", new { @class = "text-danger" })
+
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MinAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MinAmount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MinAmount, "", new { @class = "text-danger" })
-            </div>
+            <label class="labelTitle" for="name"><span class=" glyphicon glyphicon-tag"></span> Minimum Amount</label>
+
+            @Html.EditorFor(model => model.MinAmount, new { htmlAttributes = new { @class = "forminput" } })
+            <span class="labelTitle" style="color:red" id="minamount_error"></span>
+            @Html.ValidationMessageFor(model => model.MinAmount, "", new { @class = "text-danger" })
+
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ExpiryDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control date",@Type="Date" } })
-                @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
-            </div>
+            <label class="labelTitle" for="name"><span class=" glyphicon glyphicon-ban-circle"></span> Expiry Date</label>
+
+            @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "forminput date", @Type = "Date" } })
+            <span class="labelTitle" style="color:red" id="expdate_error"></span>
+            @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
+
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-success" />
-            </div>
+
+            <input type="submit" value="Add Offer" class="btn btn-success" style="margin-left:300px;width:150px;height:38px" />
+
         </div>
     </div>
 }

@@ -11,6 +11,7 @@ namespace BusReservation.Controllers
     {
         ClientServiceReference.ClientWebServiceSoapClient soapClient = new ClientServiceReference.ClientWebServiceSoapClient();
         BusBookingSystemEntities entities = new BusBookingSystemEntities();
+        BusHireEntities entity = new BusHireEntities();
         public ActionResult Index()
         {
             ViewBag.Source = new SelectList(soapClient.GetCityDetails(), "CityId", "CityName");
@@ -57,11 +58,11 @@ namespace BusReservation.Controllers
             string destinationName = soapClient.GetCityDetails().Where(ci => ci.CityId.Equals(destination)).Select(name => name.CityName).FirstOrDefault();
             ViewBag.destination = destinationName;
 
-            TimeSpan departure = Convert.ToDateTime(result.DepartureTime).TimeOfDay;
-            ViewBag.departure = departure;
+            ViewBag.departure = Convert.ToDateTime(result.DepartureTime).ToString("hh:mm tt");
+           // ViewBag.departure = departure;
 
-            TimeSpan arrival = Convert.ToDateTime(result.ArrivalTime).TimeOfDay;
-            ViewBag.arrival = arrival;
+            ViewBag.arrival = Convert.ToDateTime(result.ArrivalTime).ToString("hh:mm tt"); 
+           // ViewBag.arrival = arrival;
 
             double price = result.Price;
             ViewBag.price = price;
@@ -213,10 +214,51 @@ namespace BusReservation.Controllers
         {
             return View();
         }
-        public ActionResult Reschedule()
+        public ActionResult BusHire()
+        {
+            DateTime date = DateTime.Now;
+
+            TempData["currentDate"] = date.Year + "-0" + date.Month + "-0" + date.Day;
+
+            ViewBag.Source = new SelectList(entity.City, "CityId", "CityName");
+            ViewBag.Destination = new SelectList(entity.City, "CityId", "CityName");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SaveDetails(FormCollection collection)
+        {
+            BookDetails book = new BookDetails();
+
+            //book.BookId = b.BookId;
+            book.Name = collection["Name"];
+            book.Contact = Convert.ToInt64(collection["Contact"]);
+            entity.BookDetails.Add(book);
+            entity.SaveChanges();
+
+            HireDetails hire = new HireDetails();
+
+            hire.StartDate = Convert.ToDateTime(collection["StartDate"]).Date;
+            hire.EndDate = Convert.ToDateTime(collection["EndDate"]).Date;
+            hire.Type = collection["Type"];
+            hire.Capacity = Convert.ToInt32(collection["Capacity"]);
+            hire.Source = Convert.ToInt32(collection["Source"]);
+            hire.Destination = Convert.ToInt32(collection["Destination"]);
+            hire.Return = collection["Return"];
+            hire.BookId = book.BookId;
+
+            entity.BookDetails.Add(book);
+
+            entity.HireDetails.Add(hire);
+            entity.SaveChanges();
+
+            return RedirectToAction("Success", "Home");
+        }
+        public ActionResult Success()
         {
             return View();
         }
+
         public ActionResult Print()
         {
             return View();

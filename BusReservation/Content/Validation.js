@@ -68,13 +68,13 @@ function validateSearch(){
 //Register Validation
 
 function validateRegister(){
-            var rname=document.getElementById("Name").value;
-            var email=document.getElementById("Email").value;
-            var password=document.getElementById("Password").value;
-            var MobileNumber=document.getElementById("MobileNumber").value;
-            var gender=document.getElementById("Gender").value;
-            var dob=document.getElementById("DateOfBirth").value;
-            var address=document.getElementById("Address").value;
+    var rname = document.getElementById("Name").value;
+    var email = document.getElementById("Email").value;
+    var password = document.getElementById("Password").value;
+    var MobileNumber = document.getElementById("MobileNumber").value;
+    var gender = document.getElementById("Gender").value;
+    var dob = document.getElementById("DateOfBirth").value;
+    var address = document.getElementById("Address").value;
 
             var pass_pattern=/^((?=.*\d)(?=.*[Aa-Zz])).{4,10}/; //number 0-9 with 1 char between 4-10 digits
             var mob_pattern= /^[7-9]{1}[0-9]{9}/; //start with 7/8/9 and remaining 9 will 
@@ -211,9 +211,10 @@ function validatePassenger(){
 function validateProvider(){
     var orgName = document.getElementById("OrganizationName").value;
     var mobile = document.getElementById("MobileNumber").value;
-    var mob_pattern= /^[7-9]{1}[0-9]{9}/; //start with 7/8/9 and remaining 9 will 
+    var mob_pattern = /^[7-9]{1}[0-9]{9}/; //start with 7/8/9 and remaining 9 will 
+
     if (orgName == "") {
-        document.getElementById("organization_error").innerHTML = "*This field is required";
+        document.getElementById("organization_error").innerHTML = "*Organization name is required";
         return false;
     }
     if (orgName != "") {
@@ -221,17 +222,14 @@ function validateProvider(){
 
     }
     if (mobile == "") {
-        document.getElementById("mobile_error").innerHTML = "*This field is required";
+        document.getElementById("mobile_error").innerHTML = "*Contact number is required";
         return false;
     }
     if (mobile != "") {
         document.getElementById("mobile_error").innerHTML = "";
 
     }
-    if(!mob_pattern.test(mobile)){
-        document.getElementById("mobile_error").innerHTML="*Mobile number is not correct";
-        return false;
-    }
+    
     if(!NaN(orgName)){
         document.getElementById("organization_error").innerHTML="*Name should be character only";
         return false;
@@ -242,15 +240,22 @@ function validateProvider(){
 }
 
 //Offers Validation
-function validateOffer(){
+function validateOffer() {
+
     var offercode = document.getElementById("OfferCode").value;
     var discount = document.getElementById("DiscountPercentage").value;
     var minAmount = document.getElementById("MinAmount").value;
     var expDate = document.getElementById("ExpiryDate").value;
 
-    var offer_pattern=/^[Aa-Zz]{6}/;
+    var offer_pattern = /^[Aa-Zz]{6}/;
+
     if (offercode == "") {
         document.getElementById("offercode_error").innerHTML = "*This field is required";
+        return false;
+    }
+
+    if (!offer_pattern.test(offercode)) {
+        document.getElementById("offercode_error").innerHTML = "*Offer Code is should be 4-6 character";
         return false;
     }
     if (offercode != "") {
@@ -281,11 +286,7 @@ function validateOffer(){
         document.getElementById("expdate_error").innerHTML = "";
     }
 
-
-    if(!offer_pattern.test(offercode)){
-        document.getElementById("offercode_error").innerHTML="*Offer Code is should be 4-6 character";
-        return false;
-    }
+    
     else {
         return true;
     }

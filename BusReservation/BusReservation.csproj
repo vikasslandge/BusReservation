@@ -150,6 +150,24 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BookDetails.cs">
+      <DependentUpon>BusHireModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BusHireModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusHireModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BusHireModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusHireModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BusHireModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusHireModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\BusModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -164,6 +182,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BusModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\City.cs">
+      <DependentUpon>BusHireModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HireDetails.cs">
+      <DependentUpon>BusHireModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OfferDetails.cs">
       <DependentUpon>BusModel.tt</DependentUpon>
@@ -232,6 +256,16 @@
     <Content Include="Content\Validation.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Models\BusHireModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BusHireModel.edmx</DependentUpon>
+      <LastGenOutput>BusHireModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BusHireModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BusHireModel.edmx</DependentUpon>
+      <LastGenOutput>BusHireModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\BusModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BusModel.edmx</DependentUpon>
@@ -242,6 +276,8 @@
       <DependentUpon>BusModel.edmx</DependentUpon>
       <LastGenOutput>BusModel.cs</LastGenOutput>
     </Content>
+    <Content Include="MyFiles\Images\bg3.jpeg" />
+    <Content Include="MyFiles\Images\bg4.jpeg" />
     <Content Include="MyFiles\Images\book.png" />
     <Content Include="MyFiles\Images\bus-icon-12989.png" />
     <Content Include="MyFiles\CSS\bootstrap-grid.css" />
@@ -266,10 +302,19 @@
       <DependentUpon>BusModel.edmx</DependentUpon>
     </Content>
     <None Include="Connected Services\ClientServiceReference\ClientWebService.wsdl" />
+    <EntityDeploy Include="Models\BusHireModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BusHireModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BusHireModel.edmx.diagram">
+      <DependentUpon>BusHireModel.edmx</DependentUpon>
+    </Content>
     <None Include="MyFiles\JavaScript\jquery-1.10.2-vsdoc.js" />
+    <Content Include="MyFiles\Images\continue.jpg" />
     <Content Include="MyFiles\Images\door.jpg" />
     <Content Include="MyFiles\Images\facebook.png" />
     <Content Include="MyFiles\Images\google.png" />
+    <Content Include="MyFiles\Images\home.JPG" />
     <Content Include="MyFiles\Images\logo.png" />
     <Content Include="MyFiles\Images\banner.jpeg" />
     <Content Include="MyFiles\Images\pexels-photo-221284.jpeg" />
@@ -278,6 +323,7 @@
     <Content Include="MyFiles\Images\seatUnbook.png" />
     <Content Include="MyFiles\Images\sheild.png" />
     <Content Include="MyFiles\Images\steering.png" />
+    <Content Include="MyFiles\Images\tick.JPG" />
     <Content Include="MyFiles\Images\twitter.png" />
     <Content Include="MyFiles\JavaScript\jquery-1.10.2.js" />
     <Content Include="MyFiles\JavaScript\jquery-1.10.2.min.js" />
@@ -376,6 +422,8 @@
     <Content Include="Views\Home\Modal.cshtml" />
     <Content Include="Views\Home\Passenger.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\BusHire.cshtml" />
+    <Content Include="Views\Home\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

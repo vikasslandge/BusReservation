@@ -1,0 +1,178 @@
+﻿@model BusReservation.Models.HireDetails
+
+@{
+    ViewBag.Title = "HireDetails";
+}
+
+<script>
+
+    //source-destination cityName validation
+    $(document).ready(function () {
+        var $dropdown1 = $("select[name='Source']");
+        var $dropdown2 = $("select[name='Destination']");
+
+        $("#destination").prop("disabled", true);
+
+        $dropdown1.change(function () {
+            $("#destination").prop("disabled", false)
+            $dropdown2.find('option').prop("disabled", false);
+
+            var selectedItem = $(this).val();
+            if (selectedItem) {
+                $dropdown2.find('option[value="' + selectedItem + '"]').prop("disabled", true);
+            }
+        });
+    });
+</script>
+
+<style>
+    .forminput {
+        display: block;
+        width: 70%;
+        height: 34px;
+        padding: 10px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-left: 150px;
+    }
+
+    .labelTitle {
+        margin-left: 150px;
+        font-size: 15px;
+    }
+    .passagetitle {
+        margin-left: 150px;
+        font-size: 18px;
+        color: #d84e55;
+    }
+    h4 {
+        color: #d84e55;
+    }
+    .formbackground {
+        background-attachment: fixed;
+        background-image: url('../../MyFiles/Images/bg3.jpeg');
+        height: 1150px;
+        margin: 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 0;
+        background-position: center;
+    }
+    .formcontainer {
+        position: absolute;
+        margin-top:20px;
+        padding: 16px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        height: 1120px;
+        margin-left: 280px;
+        width: 900px;
+        padding-bottom: 20px
+    }
+</style>
+
+<div  class="formbackground" >
+  
+
+    @using (Html.BeginForm("SaveDetails", "Home", FormMethod.Post,new { @class= "formcontainer" }))
+    {
+        @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <br />
+            <h4><span class="glyphicon glyphicon-road passagetitle text-uppercase"></span> Route Information</h4>
+            <hr />
+            <div class="form-group">
+                <label class="labelTitle" for="Source"><span class="glyphicon glyphicon-map-marker "></span> Source<span style="color:red">*</span></label>
+                @Html.DropDownList("Source", (IEnumerable<SelectListItem>)ViewBag.Source, "Source", new { @class = "forminput ", id = "Source", required = "required" })
+
+
+
+            </div>
+
+            <div class="form-group">
+                <label class="labelTitle" for="Destination"><span class="glyphicon glyphicon-map-marker"></span> Destination<span style="color:red">*</span></label>
+                @Html.DropDownList("Destination", (IEnumerable<SelectListItem>)ViewBag.Destination, "Destination", new { @class = "forminput", id = "Destination", required = "required" })
+
+
+            </div>
+            <br />
+            <h4><span class="glyphicon glyphicon-time passagetitle text-uppercase"></span> FROM WHEN YOU WANT THE VEHICLE</h4>
+            <hr />
+            <div class="form-group">
+                <label class="labelTitle" for="number"><span class="glyphicon glyphicon-calendar"></span> Start Date<span style="color:red">*</span></label>
+                <input type="date" class="forminput" id="StartDate" name="StartDate" min="@TempData["currentDate"]" placeholder="StartDate" required>
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+
+
+            <div class="form-group">
+                <label class="labelTitle" for="number"><span class="glyphicon glyphicon-calendar"></span> Return Date<span style="color:red">*</span></label>
+                <input type="date" class="forminput" id="EndDate" name="EndDate" min="@TempData["currentDate"]" required>
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            </div>
+            <br />
+            <h4><span class="glyphicon glyphicon-th-list passagetitle"></span> Additional Information</h4>
+            <hr />
+            <div class="form-group">
+                <label class="labelTitle" for="number"><span class="glyphicon glyphicon-leaf"></span> Bus Type<span style="color:red">*</span></label>
+                @Html.DropDownListFor(model => model.Type,
+                      new List<SelectListItem> {
+                          new SelectListItem { Value = "" , Text = "" },
+                           new SelectListItem { Value = "1" , Text = "A/C" },
+                           new SelectListItem { Value = "2" , Text = "Non A/C" },
+                        },
+                      new { @class= "forminput", required = "required" })
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="form-group">
+                <label class="labelTitle" for="Capacity"><span class="glyphicon glyphicon-th-list"></span> Passenger Count<span style="color:red">*</span></label>
+
+                <input type="number" class="forminput" id="Capacity" name="Capacity" placeholder="Count" min="1" max="25" required>
+                @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
+
+            </div>
+
+
+            <div class="form-group">
+                <label class="labelTitle" for="Return"><span class="glyphicon glyphicon-random"></span> Return Trip<span style="color:red">*</span></label>
+
+                @Html.DropDownListFor(model => model.Return,
+                new List<SelectListItem> {
+                     new SelectListItem { Value = "" , Text = "" },
+                     new SelectListItem { Value = "1" , Text = "Yes" },
+                     new SelectListItem { Value = "2" , Text = "No" },
+                  },
+                new { @class= "forminput" })
+                @Html.ValidationMessageFor(model => model.Return, "", new { @class = "text-danger", required = "required" })
+
+            </div>
+            <br />
+            <h4><span class="glyphicon glyphicon-phone-alt passagetitle"></span> Contact Information</h4>
+            <hr />
+            <div class="form-group">
+                <label class="labelTitle" for="name"><span class=" glyphicon glyphicon-user"></span> Name<span style="color:red">*</span></label>
+                <input type="text" class="forminput" id="Name" name="Name" placeholder="Name" min="3" maxlength="10" required>
+            </div>
+
+            <div class="form-group">
+                <label class="labelTitle" for="number"><span class="glyphicon glyphicon-earphone"></span> Mobile Number<span style="color:red">*</span></label>
+                <input type="number" class="forminput" id="Contact" name="Contact" placeholder="Mobile number" min="700000000" max="9999999999" required>
+            </div>
+            <br />
+            <div style="width:720px">
+
+                <input type="submit" value="SUBMIT" class="btn btn-danger" style="margin-left:380px;width:150px;height:38px" />
+
+            </div>
+        
+    }
+
+</div>
