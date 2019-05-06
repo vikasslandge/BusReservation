@@ -85,29 +85,32 @@
 
 </script>
 
-
+@*File for validation*@
+<script src="~/Content/Validation.js"></script>
 
 <!------------------Search bus code---------------->
 <div class="container-fluid" style="padding:0" id="busTicket">
     <div class="mainbg" style="opacity:0.7"></div>
     <h1 class="text-center infohead">BOOK A BUS</h1><br>
 
-    @using (Html.BeginForm("BusList", "Home", FormMethod.Post))
+    @using (Html.BeginForm("BusList", "Home", FormMethod.Post,new {onsubmit= "return validateSearch();" }))
     {
 
         @Html.AntiForgeryToken()
         <div class="row infodata">
             <div class="col-md-3">
-                @Html.DropDownList("Source", (IEnumerable<SelectListItem>)ViewBag.Source, "Source", new { @class = "form-control" })
+                @Html.DropDownList("Source", (IEnumerable<SelectListItem>)ViewBag.Source, "Source", new { @class = "form-control" , id = "Source" })
+                <span style="color:red" id="source_error"></span>
             </div>
             <div class="col-md-3">
-                @Html.DropDownList("Destination", (IEnumerable<SelectListItem>)ViewBag.Destination, "Destination", new { @class = "form-control", id = "destination" })
+                @Html.DropDownList("Destination", (IEnumerable<SelectListItem>)ViewBag.Destination, "Destination", new { @class = "form-control", id = "Destination" })
+                <span style="color:red" id="destination_error"></span>
             </div>
             <div class="col-md-3">
                 @*<input type="date" id="DateOfJourney" name="departureDate" class="form-control" data-toggle="datepicker" placeholder="MM-DD-YYYY">*@
-                @Html.EditorFor(model => model.DateOfJourney, new { htmlAttributes = new { @class = "datepicker.now form-control", type = "date" } })
+                @Html.EditorFor(model => model.DateOfJourney, new { htmlAttributes = new { @class = "datepicker.now form-control", type = "date",id= "DateOfJourney",min= @TempData["currentDate"] } })
                 @* <input placeholder="Journey Date" class="form-control" type="date" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">*@
-                @Html.ValidationMessageFor(model => model.DateOfJourney, "", new { @class = "text-danger" })
+               <span style="color:red" id="date_error"></span>
             </div>
             <div class="col-md-3">
                 <input type="submit" class="btn-danger btn" value="Search Bus">

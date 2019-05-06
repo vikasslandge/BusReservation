@@ -15,8 +15,10 @@ namespace BusReservation.Controllers
         {
             ViewBag.Source = new SelectList(soapClient.GetCityDetails(), "CityId", "CityName");
             ViewBag.Destination = new SelectList(soapClient.GetCityDetails(), "CityId", "CityName");
-   
- 
+
+            DateTime date = DateTime.Now;
+            TempData["currentDate"] = date.Year + "-0" + date.Month + "-0" + date.Day;
+
             return View();
         }
         [HttpPost]
