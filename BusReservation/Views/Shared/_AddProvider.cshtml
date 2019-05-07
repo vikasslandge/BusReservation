@@ -41,15 +41,15 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             <label class="labelTitle" for="name"><span class=" glyphicon glyphicon-flag"></span>Organization Name</label>
-            @Html.EditorFor(model => model.OrganisationName, new { htmlAttributes = new { @class = "forminput", id= "OrganizationName" } })
-            <span class="labelTitle"  style="color:red" id="organization_error"></span>
+            @Html.EditorFor(model => model.OrganisationName, new { htmlAttributes = new { @class = "forminput", required="required" } })
+            
             @Html.ValidationMessageFor(model => model.OrganisationName, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
             <label class="labelTitle" for="number"><span class="glyphicon glyphicon-phone"></span>Mobile Number</label>
-            @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "forminput", id = "MobileNumber" } })
-            <span class="labelTitle" style="color:red" id="mobile_error"></span>
+            @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "forminput",required="required",pattern= @"^[7-9]{1}[0-9]{9}" } })
+            
             @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
         </div>
 

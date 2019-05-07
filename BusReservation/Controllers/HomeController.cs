@@ -38,6 +38,10 @@ namespace BusReservation.Controllers
             DateTime doj = Convert.ToDateTime(collection["DateOfJourney"]).Date;
             ViewBag.doj = doj;
             //var result = soapClient.GetRouteDetails(Convert.ToInt32(collection["Source"]), Convert.ToInt32(collection["Destination"]), Convert.ToDateTime(collection["DateOfJourney"]));
+
+            ViewBag.OfferCode = entities.OfferDetails.Where(e => e.ExpiryDate > DateTime.Now).Select(s =>  s.OfferCode ).ToList();
+            ViewBag.Discount = entities.OfferDetails.Where(e => e.ExpiryDate > DateTime.Now).Select(s =>  s.DiscountPercentage).ToList();
+
             return View(soapClient.GetRouteDetails(source, destination, doj));
         }
         public ActionResult SelectSeat(int id)
@@ -96,7 +100,7 @@ namespace BusReservation.Controllers
             //string seatdata = ViewBag.arraySeat;
             //var seatList = seatdata.Split(',').ToList();
             //ViewBag.seatList = seatList;
-
+        
 
             string name = collection["Name"].ToString();
             List<string> NameList = name.Split(',').ToList();
@@ -147,6 +151,10 @@ namespace BusReservation.Controllers
         [HttpPost]
         public ActionResult Register(UserDetails user, FormCollection collection)
         {
+
+            DateTime date = DateTime.Now;
+            TempData["DateOfBirth"] = date.Year + "-0" + date.Month + "-0" + date.Day;
+
             UserDetails detail = new UserDetails();
             //detail.UserId = user.UserId;
             detail.Name = collection["name"];
@@ -173,25 +181,28 @@ namespace BusReservation.Controllers
                 string num = login.MobileNumber;
                 string pwd = login.Password;
 
+
                 var userDetails = entities.UserDetails.Where(user => user.MobileNumber.Equals(num) && user.Password.Equals(pwd)).FirstOrDefault();
                 //int loginid = entities.UserDetails.Where(s => s.MobileNumber == userDetails.MobileNumber).Select(s1 => s1.UserId).FirstOrDefault();
-                int loginid = userDetails.UserId;
+      
+
                 if (userDetails == null)
                 {
-                    return View("Index", login);
+                    return View("Index");
                 }
                 else
                 {
+       
                     string role = userDetails.UserType;
                     if (role == "Admin")
                     {
-                        Session["UserId"] = loginid;
+                        Session["UserId"] = userDetails.UserId;
                         Session["Name"] = login.Name;
                         return RedirectToAction("Index", "Admin");
                     }
                     else if (role == "User")
                     {
-                        Session["UserId"] = loginid;
+                        Session["UserId"] = userDetails.UserId;
                         Session["Name"] = login.Name;
                         return RedirectToAction("Index", "Home");
                     }
@@ -279,6 +290,32 @@ namespace BusReservation.Controllers
             int id = Convert.ToInt32(Session["UserId"]);
             return View();
         }
+        [HttpPost]
+        public JsonResult ApplyOffer(string key, string value)
+        {
+            var offerCode = value;
+            var percent = entities.OfferDetails.Where(of => of.OfferCode == offerCode).Select(s => s.DiscountPercentage).Single();
+            var price =Convert.ToInt32( TempData["price"]);
+            ViewBag.newPrice =Convert.ToInt32( (price * percent) / 100);
+            TempData.Keep();
+            return this.Json(new {success = true });
+        }
+        public ActionResult TicketDetails()
+        {
 
+            return View();
+        }
+        public PartialViewResult GetMapView()
+        {
+            ViewBag.Source = TempData["source"];
+            ViewBag.Destination = TempData["destination"];
+            return PartialView("_GetMapView");
+        }
+        [HttpPost]
+        public ActionResult CancelTicket(FormCollection collection)
+        {
+            soapClient.CancelTicket(Convert.ToInt32(collection["ticketNo"]));
+            return RedirectToAction("Cancel");
+        }
     }
 }

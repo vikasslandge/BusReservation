@@ -81,7 +81,7 @@
                 <div class="form-group">
                     <label for="name" class="labelTitle">Name<span style="color:red">*</span></label>
                     @*<input type="text" class="formcontrol" id="Name" name="Name" placeholder="Name">*@
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "forminput",id= "Name" , required = "required" } })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "forminput",id= "Name" , required = "required", pattern=@"^[A-Za-z]{3,15}" } })
                     
                 </div>
 
@@ -91,7 +91,7 @@
 
                         <label for="number" class="labelTitle">Age<span style="color:red">*</span></label>
                         @*<input type="number" class="formcontrol" id="Age" name="Age" placeholder="Age">*@
-                        @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = " forminput", id = "Age", required = "required" } })
+                        @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = " forminput", id = "Age", required = "required", min="1", max="100" } })
                         
                     </div>
                     <div class="col-sm-5">
@@ -117,7 +117,7 @@
 
             <label for="number" class="labelTitle">Mobile Number<span style="color:red">*</span></label>
             @*<input type="number" class="formcontrol" id="Phone" name="Phone" placeholder="Mobile number">*@
-            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "forminput", id = "Phone", required = "required" } })
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "forminput", id = "Phone", required = "required", pattern=@"^[7-9]{1}[0-9]{9}" } })
             
         </div>
         <br />

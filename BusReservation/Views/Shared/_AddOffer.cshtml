@@ -45,7 +45,7 @@
         <div class="form-group">
             <label class="labelTitle" for="name"><span class=" glyphicon glyphicon-gift"></span> Offer Code</label>
 
-            @Html.EditorFor(model => model.OfferCode, new { htmlAttributes = new { @class = "forminput", id = "OfferCode" } })
+            @Html.EditorFor(model => model.OfferCode, new { htmlAttributes = new { @class = "forminput", id = "OfferCode",pattern=@"^[A-Zz-a]{6,8}" } })
             <span class="labelTitle" style="color:red" id="offercode_error"></span>
             @Html.ValidationMessageFor(model => model.OfferCode, "", new { @class = "text-danger" })
 
@@ -54,7 +54,7 @@
         <div class="form-group">
             <label class="labelTitle" for="name"><span class=" glyphicon glyphicon-minus-sign"></span> Discount Percentage</label>
 
-            @Html.EditorFor(model => model.DiscountPercentage, new { htmlAttributes = new { @class = "forminput" } })
+            @Html.EditorFor(model => model.DiscountPercentage, new { htmlAttributes = new { @class = "forminput",required="required",min="5", max="50",id= "DiscountPercentage" } })
             <span class="labelTitle" style="color:red" id="discount_error"></span>
             @Html.ValidationMessageFor(model => model.DiscountPercentage, "", new { @class = "text-danger" })
 
@@ -63,7 +63,7 @@
         <div class="form-group">
             <label class="labelTitle" for="name"><span class=" glyphicon glyphicon-tag"></span> Minimum Amount</label>
 
-            @Html.EditorFor(model => model.MinAmount, new { htmlAttributes = new { @class = "forminput" } })
+            @Html.EditorFor(model => model.MinAmount, new { htmlAttributes = new { @class = "forminput" ,min="199",id= "MinAmount" } })
             <span class="labelTitle" style="color:red" id="minamount_error"></span>
             @Html.ValidationMessageFor(model => model.MinAmount, "", new { @class = "text-danger" })
 
@@ -72,7 +72,7 @@
         <div class="form-group">
             <label class="labelTitle" for="name"><span class=" glyphicon glyphicon-ban-circle"></span> Expiry Date</label>
 
-            @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "forminput date", @Type = "Date" } })
+            @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "forminput date", @Type = "Date", required="required",id= "ExpiryDate" } })
             <span class="labelTitle" style="color:red" id="expdate_error"></span>
             @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
 

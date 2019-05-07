@@ -42,10 +42,10 @@
         var $dropdown1 = $("select[name='Source']");
         var $dropdown2 = $("select[name='Destination']");
 
-        $("#destination").prop("disabled", true);
+        $("#Destination").prop("disabled", true);
 
         $dropdown1.change(function () {
-            $("#destination").prop("disabled", false)
+            $("#Destination").prop("disabled", false)
             $dropdown2.find('option').prop("disabled", false);
 
             var selectedItem = $(this).val();

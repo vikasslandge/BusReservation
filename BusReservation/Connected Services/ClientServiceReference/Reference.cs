@@ -763,6 +763,12 @@ namespace BusReservation.ClientServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetRouteById", ReplyAction="*")]
         System.Threading.Tasks.Task<BusReservation.ClientServiceReference.GetRouteByIdResponse> GetRouteByIdAsync(BusReservation.ClientServiceReference.GetRouteByIdRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CancelTicket", ReplyAction="*")]
+        bool CancelTicket(int ticketId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CancelTicket", ReplyAction="*")]
+        System.Threading.Tasks.Task<bool> CancelTicketAsync(int ticketId);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1475,6 +1481,14 @@ namespace BusReservation.ClientServiceReference {
             inValue.Body = new BusReservation.ClientServiceReference.GetRouteByIdRequestBody();
             inValue.Body.id = id;
             return ((BusReservation.ClientServiceReference.ClientWebServiceSoap)(this)).GetRouteByIdAsync(inValue);
+        }
+        
+        public bool CancelTicket(int ticketId) {
+            return base.Channel.CancelTicket(ticketId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CancelTicketAsync(int ticketId) {
+            return base.Channel.CancelTicketAsync(ticketId);
         }
     }
 }

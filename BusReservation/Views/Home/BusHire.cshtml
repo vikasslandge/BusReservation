@@ -29,7 +29,7 @@
     .forminput {
         display: block;
         width: 70%;
-        height: 34px;
+        height: 36px;
         padding: 10px 12px;
         font-size: 14px;
         line-height: 1.42857143;
@@ -56,7 +56,7 @@
     .formbackground {
         background-attachment: fixed;
         background-image: url('../../MyFiles/Images/bg3.jpeg');
-        height: 1150px;
+        height: 1170px;
         margin: 0;
         background-size: cover;
         background-repeat: no-repeat;
@@ -69,7 +69,7 @@
         padding: 16px;
         background-color: white;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        height: 1120px;
+        height: 1150px;
         margin-left: 280px;
         width: 900px;
         padding-bottom: 20px
@@ -159,12 +159,12 @@
             <hr />
             <div class="form-group">
                 <label class="labelTitle" for="name"><span class=" glyphicon glyphicon-user"></span> Name<span style="color:red">*</span></label>
-                <input type="text" class="forminput" id="Name" name="Name" placeholder="Name" min="3" maxlength="10" required>
+                <input type="text" class="forminput" id="Name" name="Name" placeholder="Name" min="3" maxlength="10" required pattern="^[A-Zz-a]{3,15}">
             </div>
 
             <div class="form-group">
                 <label class="labelTitle" for="number"><span class="glyphicon glyphicon-earphone"></span> Mobile Number<span style="color:red">*</span></label>
-                <input type="number" class="forminput" id="Contact" name="Contact" placeholder="Mobile number" min="700000000" max="9999999999" required>
+                <input type="number" class="forminput" id="Contact" name="Contact" placeholder="Mobile number"pattern="^[7-9]{1}[0-9]{9}" required>
             </div>
             <br />
             <div style="width:720px">

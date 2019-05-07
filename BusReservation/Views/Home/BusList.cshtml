@@ -58,22 +58,48 @@
     <div class="col-md-3 sidediv">
 
 
+        <img src="~/MyFiles/Images/SpecialOffer.jpg" style="width:150px; height:150px; margin-left:70px " />
+        @*@{
+            var offerList = ViewBag.Offers as IEnumerable<BusReservation.Models.OfferDetails>;
+        }
+          @offerList.FirstOrDefault().DiscountPercentage;*@
+          
+        @foreach (var item in ViewBag.OfferCode)
+        {
+            <h2>OfferCode: @item </h2>
+
+        }
+        @*@foreach (var item in ViewBag.Discount)
+        {
+
+            <h2>Discount % :@item</h2>
+        }*@
+    <br />
     </div>
     
     <div class="col-sm-8 " style="margin-top: 40px;left: 32%;">
         <div class="" style="background-color: whitesmoke;height: 100px;">
-            <span class="fontstyle" style="margin-left: 35%;">@ViewBag.source</span>
+            <span class="fontstyle" style="margin-left: 32%;">@ViewBag.source</span>
             <i class="glyphicon glyphicon-arrow-right"></i>
             <span class="fontstyle"> @ViewBag.destination</span>
             <span class="prev fontstyle"><i class="glyphicon glyphicon-menu-left"></i></span>
             <span class="dateDispOnw">
                 <input type="text" id="searchDat" readonly class="searchDate fontstyle" value=@ViewBag.doj>
-                <span class="searchday fontstyle" id="Day" ></span>
+                <span class="searchday fontstyle" id="Day"></span>
             </span>
             <span class="next fontstyle"><i class="glyphicon glyphicon-menu-right"></i></span>
 
         </div>
-
+        <div class="col-sm-8 " style=" left: 32%;">
+            @{TempData["source"] = ViewBag.source;
+                    TempData["destination"] = ViewBag.destination;
+                } 
+            <h4>  @Html.ActionLink("Show Map View Of Route ", "GetMapView")</h4>
+           
+       
+            
+        </div >
+       
         @foreach (var item in Model)
         {
             <div class="boxed">
@@ -98,10 +124,10 @@
                         <p style="font-size:12px">Available Seats  @Html.DisplayFor(modelItem => item.AvailableSeats)</p>
                     </div>
                     <div class="col-sm-2">
-                        @Html.ActionLink("View Seats", "SelectSeat","Home", new { id = item.RouteId }, new { @class = "btn btn-danger  text-uppercase" })
+                        @Html.ActionLink("View Seats", "SelectSeat", "Home", new { id = item.RouteId }, new { @class = "btn btn-danger  text-uppercase" })
                     </div>
                 </div>
-                
+
             </div>
         }
 

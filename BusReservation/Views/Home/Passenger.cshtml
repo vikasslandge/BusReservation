@@ -2,12 +2,119 @@
 @{
     ViewBag.Title = "Passenger";
     @*if (Session["UserID"] == null)
-    {
-        Response.Redirect("~/Login/Index");
-
-        <a href="#" data-toggle="modal" data-target="#loginModal">Sign Up/Sign In</a>
-    }*@
+        {
+            Response.Redirect("~/Login/Index");
+            <a href="#" data-toggle="modal" data-target="#loginModal">Sign Up/Sign In</a>
+        }*@
 }
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<style>
+    .formcontainer {
+        margin-top: 50px;
+        margin-left: 180px;
+        width: 770px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        height: 320px;
+    }
 
-<h2>Passenger</h2>
+    .labelTitle {
+        margin-left: 150px;
+        font-size: 15px;
+    }
+
+    .forminput {
+        display: block;
+        width: 30%;
+        height: 34px;
+        padding: 10px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-left: 150px;
+    }
+</style>
+<script>
+    //offer code change
+    $(document).ready(function () {
+        $("#addOffer").click(function () {
+            var code = $("#offerCode").val();
+            alert("in post");
+            $.post('/Home/ApplyOffer',
+                { key: "abc", value: code, }, function (data) {
+                    alert("success" + data.success);
+                    if (data.success) {
+                        document.getElementById("offer_error").innerHTML = "Applied";
+                        var cal = document.getElementById("calculate").val();
+                        document.getElementById("amount").val();
+
+                    }
+                    else {
+                        alert("Not applied");
+                    }
+                });
+        });
+
+    })
+</script>
+
+<br /><br />
+<div class="form-group" style="margin-left:25%">
+    <label class="labelTitle" for="name"><span class=" glyphicon glyphicon-folder-open"></span>Promo Code</label>
+    <input type="text" class="forminput" id="offerCode" pattern="^[A-Zz-a]{6,8}" required>
+    <span class="labelTitle" style="color:red" id="offer_error"></span>
+
+</div>
+<div class="form-group" style="margin-left:50%">
+    <input id="addOffer" type="submit" value="Apply Offer" class="btn btn-success" />
+    @*@Ajax.ActionLink("Apply Promo", "ApplyOffer", new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "amount" })*@
+</div>
+
+
+
+<form action="TicketDetails" method="post">
+    @Html.AntiForgeryToken()
+    <br />
+    <div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group" style="margin-left:25%">
+
+            <label class="labelTitle" for="name"><span class=" glyphicon glyphicon-folder-open"></span>UPI Id</label>
+            <input type="text" class="forminput" id="UPI" required pattern="^\w+@("@")\w{3,10}$">
+            <span class="labelTitle" style="color:red" id="upi_error"></span>
+
+        </div>
+
+        <div class="form-group" style="margin-left:25%">
+            <div id="calculate">
+                @{
+                    //offer code
+                    var price = ViewBag.price;
+                    var newPrice = ViewBag.newPrice;
+                    var p = (Convert.ToInt32(price) - Convert.ToInt32(newPrice));
+                }
+            </div>
+            <label class="labelTitle" for="number"><span class="glyphicon glyphicon-euro"></span>Amount</label>
+            <label class="labelTitle" id="amount">@p</label>
+            <span class="labelTitle" style="color:red" id="mobile_error"></span>
+
+        </div>
+
+        <div class="form-group" style="margin-left:20%">
+            <input type="submit" value="Pay By UPI" class="btn btn-danger" style="margin-left:300px;width:150px;height:38px" />
+        </div>
+        <div class="form-group" style="margin-left:35%">
+            <a href="https://www.instamojo.com/vikasslandge/tickets-cf620/" rel="im-checkout" data-behaviour="remote" class=" btn btn-success" data-text="pay"></a>
+            <script src="https://js.instamojo.com/v1/button.js"></script>
+        </div>
+    </div>
+</form>
 
